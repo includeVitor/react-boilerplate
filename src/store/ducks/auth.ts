@@ -1,5 +1,4 @@
 import { Action } from 'redux';
-import { RootState } from './store';
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -20,25 +19,28 @@ export const logout = (): LogoutAction => ({
   type: LOGOUT
 });
 
-// export const selectRecorderState = (rootState: RootState) => rootState.recorder;
-// export const selectDateStart = (rootState: RootState) =>
-//   selectRecorderState(rootState).dateStart;
-
 const initialState: AuthState = {
     isAuthenticated: false,
     token: null
-};
+}
 
 const authReducer = (
   state: AuthState = initialState,
   action: LoginAction | LogoutAction
 ) => {
   switch (action.type) {
+    
     case LOGIN:
-      return { ...state, dateStart: new Date().toISOString() };
+      return { 
+        ...state, 
+        isAuthenticated: true 
+      };
 
     case LOGOUT:
-      return { ...state, dateStart: '' };
+      return { 
+        ...state, 
+        isAuthenticated: false 
+      };
 
     default:
       return state;
