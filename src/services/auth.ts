@@ -9,8 +9,16 @@ async function login(user : UserRequest){
 
     try{
         let result = await api.post(`/entrar`,{email : user.email, password : user.password})
-        console.log(result)
+        if(result.data.sucess){
+            //implementing auth
+            console.log(result.data)
+        }else{
+            // toast message notification
+            console.log(result.data)
+        }
+
     }catch(error){
-        console.log(error)
+        //if something wrong happen
+        console.log(error.response.data)
     }
 }
