@@ -1,4 +1,6 @@
 import { Action } from 'redux';
+import { RootState } from '../../store'
+
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -18,6 +20,8 @@ export const login = (): LoginAction => ({
 export const logout = (): LogoutAction => ({
   type: LOGOUT
 });
+
+export const isAuthenticatedRootState = (rootState: RootState) => rootState.auth.isAuthenticated;
 
 const initialState: AuthState = {
     isAuthenticated: false,
