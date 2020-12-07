@@ -1,5 +1,5 @@
 import api from './api'
-import { UserRequest, Error } from '../types'
+import { UserRequest, Error, Errors } from '../types'
 import { login, logout } from "../store/ducks/auth"
 import { set_errors } from "../store/ducks/ui"
 import store from "../store"
@@ -7,6 +7,7 @@ import store from "../store"
 export const authService = {
     loginUser
 }
+
 
 async function loginUser(user : UserRequest, history : any){
 
@@ -41,11 +42,25 @@ async function loginUser(user : UserRequest, history : any){
         }
 
     }catch(error){
-        //if something wrong happen
-        //store.dispatch({type: 'ui/set_errors', payload: { errors: "test"} })
-        store.dispatch(set_errors("testzzz"))
-        console.log(error)
-        //console.log(error.response.data)
+
+        if(error.response.data){
+            
+            let data : any = error.response.data
+            var items: Error[] = []
+            
+            data.errors.forEach((e: string) => {                
+                items.push({description: e})
+            });
+
+            const errors : Errors = ({
+                code :  error.response.status,
+                errors : items
+            })
+
+            store.dispatch(set_errors(errors))
+        
+        }
+
     }
 
     

@@ -18,6 +18,10 @@ export interface AppRouteProps extends RouteProps{
 }
 
 export interface Error{
-    code: number,
     description: string
+}
+
+export interface Errors{
+    code: number,
+    errors: Error[]
 }
