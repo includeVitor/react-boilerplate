@@ -1,5 +1,6 @@
 import React from "react"
 import { Switch, BrowserRouter as Router } from "react-router-dom"
+import PublicRoutes from './PublicRoutes'
 import PrivateRoutes from './PrivateRoutes'
 
 const Routes: React.FC = () => {
@@ -7,16 +8,13 @@ const Routes: React.FC = () => {
         <Router>
             <Switch>
 
-                {/* Public Routes */}
-                
+                <PublicRoutes />
 
-                {/* Private Routes Routes */}
                 <PrivateRoutes/>
 
-                
             </Switch>
         </Router>
     );
 }
  
-export default Routes;
+export default Routes
