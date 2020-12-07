@@ -1,5 +1,6 @@
 import api from './api'
-import {UserRequest} from '../types'
+import { UserRequest } from '../types'
+import { MAIN } from '../route/CONSTANTS'
 
 export const authService = {
     login
@@ -17,7 +18,7 @@ async function login(user : UserRequest, history : any){
             api.defaults.headers.common['Authorization'] = token
             
             //route
-            history.push('/')
+            history.push(MAIN)
         }else{
             // toast message notification
             console.log(result.data)
