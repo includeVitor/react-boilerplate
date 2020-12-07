@@ -2,12 +2,15 @@ import React from "react"
 import { connect } from "react-redux"
 import { Redirect, Route } from "react-router-dom"
 import {AppRouteProps} from "../../../types"
+import {LOGIN} from '../../CONSTANTS'
  
 const PrivateRoute: React.FC<AppRouteProps> = ({component: Component, authenticated, ...rest}) => {
+
+    console.log(authenticated)
     return (  
         <Route
             {...rest}
-            render={ (props) => authenticated ? <Redirect to="/" /> : <Component {...props} />}
+            render={ (props) => authenticated ? <Component {...props} /> : <Redirect to={LOGIN} />}
         />
     )
 }

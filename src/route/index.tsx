@@ -1,23 +1,20 @@
-import React, { lazy, Suspense } from "react"
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom"
-import { LOGIN, MAIN } from './CONSTANTS'
-
-const Login = lazy(() => import('../pages/Login'))
+import React from "react"
+import { Switch, BrowserRouter as Router } from "react-router-dom"
+import PrivateRoutes from './PrivateRoutes'
 
 const Routes: React.FC = () => {
     return (
         <Router>
-            <Suspense fallback={<h1>Carregando...</h1>}>
-                <Switch>
+            <Switch>
 
-                    {/* Public Routes */}
-                    <Route exact path={LOGIN} component={() => <Login />} />
+                {/* Public Routes */}
+                
 
-                    {/* Private Routes Routes */}
+                {/* Private Routes Routes */}
+                <PrivateRoutes/>
 
-                    
-                </Switch>
-            </Suspense>
+                
+            </Switch>
         </Router>
     );
 }
