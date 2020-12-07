@@ -6,7 +6,6 @@ import {LOGIN} from '../../CONSTANTS'
  
 const PrivateRoute: React.FC<AppRouteProps> = ({component: Component, authenticated, ...rest}) => {
 
-    console.log(authenticated)
     return (  
         <Route
             {...rest}
