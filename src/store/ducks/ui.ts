@@ -48,8 +48,6 @@ const uiReducer = (
     switch(action.type){
 
         case SET_ERRORS:
-            //const { errors } = action.payload
-
             return{
                 ...state,
                 errors: action.payload

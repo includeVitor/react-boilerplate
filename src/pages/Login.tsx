@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react"
 import { authService } from "../services"
 import { UserRequest } from "../types"
 import { useHistory } from "react-router-dom"
- 
+import { info } from "../store/ducks/toast"
+import { useDispatch } from "react-redux"
 
 const LoginPage: React.FC = (props : any) => { 
     
     const history =  useHistory()
 
+    const dispatch = useDispatch();
+    
     const [values, setValues] = useState({
         email: "",
         password: ""
@@ -27,6 +30,10 @@ const LoginPage: React.FC = (props : any) => {
 
     const handleClick = (e: any) => {
         e.preventDefault()
+
+        
+        dispatch(info())
+
 
         // client side validation
 

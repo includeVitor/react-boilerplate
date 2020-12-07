@@ -1,4 +1,5 @@
 import { Action } from "redux"
+import { toast } from "react-toastify";
 
 interface ToastState { 
     time?: number,
@@ -43,27 +44,24 @@ const toastReducer = (
     switch(action.type){
 
         case INFO:
+            toast.info("test")
             return{
-                ...state,
-
+                ...state
             }
 
         case SUCCESS:
             return{
-                ...state,
-
+                ...state
             }
 
         case WARNING:
             return{
-                ...state,
-
+                ...state
             }
 
         case ERROR:
             return{
-                ...state,
-
+                ...state
             }
 
         default:
