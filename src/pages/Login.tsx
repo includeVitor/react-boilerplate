@@ -4,6 +4,7 @@ import { UserRequest } from "../types"
 import { useHistory } from "react-router-dom"
 import { info } from "../store/ducks/toast"
 import { useDispatch } from "react-redux"
+import { Toast } from "../types"
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -31,8 +32,12 @@ const LoginPage: React.FC = (props : any) => {
     const handleClick = (e: any) => {
         e.preventDefault()
 
-        
-        dispatch(info())
+        const toast : Toast = {
+            time: 10000,
+            message: "Deu certo"
+        }
+
+        dispatch(info(toast))
 
 
         // client side validation

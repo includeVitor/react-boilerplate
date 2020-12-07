@@ -1,7 +1,8 @@
 import { Action } from "redux"
 import { toast } from "react-toastify";
+import { Toast } from "../../types"
 
-interface ToastState { 
+interface ToastState{ 
     time?: number,
     message: string
 }
@@ -11,25 +12,37 @@ const SUCCESS = 'toast/success'
 const WARNING = 'toast/warning'
 const ERROR = 'toast/error'
 
-type InfoAction = Action<typeof INFO>
-type SuccessAction = Action<typeof SUCCESS>
-type WarningAction = Action<typeof WARNING>
-type ErrorAction = Action<typeof ERROR>
+interface InfoAction extends Action<typeof INFO> {
+    payload: Toast
+}
+interface SuccessAction extends Action<typeof SUCCESS> {
+    payload: Toast
+}
+interface WarningAction extends Action<typeof WARNING> {
+    payload: Toast
+}
+interface ErrorAction extends Action<typeof ERROR> {
+    payload: Toast
+}
 
-export const info = (): InfoAction => ({
-    type: INFO
+export const info = (toast: Toast): InfoAction => ({
+    type: INFO,
+    payload: toast
 })
 
-export const success = (): SuccessAction => ({
-    type: SUCCESS
+export const success = (toast: Toast): SuccessAction => ({
+    type: SUCCESS,
+    payload: toast
 })
 
-export const warning = (): WarningAction => ({
-    type:WARNING
+export const warning = (toast : Toast): WarningAction => ({
+    type:WARNING,
+    payload: toast
 })
 
-export const error = (): ErrorAction => ({
-    type: ERROR
+export const error = (toast: Toast): ErrorAction => ({
+    type: ERROR,
+    payload: toast
 })
 
 const initialState: ToastState = {
@@ -44,7 +57,8 @@ const toastReducer = (
     switch(action.type){
 
         case INFO:
-            toast.info("test")
+            
+            toast.info(action.payload.message, {autoClose: action.payload.time})
             return{
                 ...state
             }

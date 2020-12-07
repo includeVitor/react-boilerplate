@@ -22,9 +22,9 @@ type LoadingUIAction = Action<typeof LOADING_UI>
 
 
 
-export const set_errors = (value : Errors) : SetErrorsAction => ({
+export const set_errors = (errors : Errors) : SetErrorsAction => ({
     type: SET_ERRORS,
-    payload : { errors: value }
+    payload : { errors: errors }
 })
 
 export const clear_errors = () : ClearErrorsAction => ({
