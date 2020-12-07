@@ -15,11 +15,11 @@ type LogoutAction = Action<typeof LOGOUT>
 
 export const login = (): LoginAction => ({
   type: LOGIN
-});
+})
 
 export const logout = (): LogoutAction => ({
   type: LOGOUT
-});
+})
 
 const initialState: AuthState = {
     isAuthenticated: false,
