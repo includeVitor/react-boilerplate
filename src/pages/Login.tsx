@@ -3,10 +3,13 @@ import { useDispatch, useSelector, useStore } from "react-redux"
 import { RootState } from "../store"
 import { authService } from "../services"
 import { UserRequest } from "../types"
+import { useHistory } from "react-router-dom"
  
 
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC = (props : any) => {
 
+    const history =  useHistory()
+    
     const [values, setValues] = useState({
         email: "",
         password: ""
@@ -29,8 +32,8 @@ const LoginPage: React.FC = () => {
             email: values.email,
             password: values.password
         }
-
-        authService.login(userData)
+        
+        authService.login(userData, history)
     }
 
 
@@ -44,8 +47,8 @@ const LoginPage: React.FC = () => {
             <button onClick={handleClick}>Send</button>
         </div>
 
-    );
+    )
 
 }
  
-export default LoginPage;
+export default LoginPage
