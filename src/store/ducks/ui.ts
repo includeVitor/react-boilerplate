@@ -13,7 +13,7 @@ const LOADING_UI = 'ui/loading_ui'
 
 interface SetErrorsAction extends Action<typeof SET_ERRORS> {
     payload: {
-      errors: Error[];
+      errors: Error[]
     }
 }
   
@@ -34,7 +34,7 @@ const initialState : UiState = {
 }
 
 const uiReducer = (
-    state: UiState,
+    state: UiState = initialState,
     action: SetErrorsAction | ClearErrorsAction | LoadingUIAction
 ) => {
     
