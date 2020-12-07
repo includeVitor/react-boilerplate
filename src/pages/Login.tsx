@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react"
 import { authService } from "../services"
 import { UserRequest } from "../types"
 import { useHistory } from "react-router-dom"
-import { info } from "../store/ducks/toast"
 import { useDispatch } from "react-redux"
-import { Toast } from "../types"
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -32,14 +30,6 @@ const LoginPage: React.FC = (props : any) => {
     const handleClick = (e: any) => {
         e.preventDefault()
 
-        const toast : Toast = {
-            time: 10000,
-            message: "Deu certo"
-        }
-
-        dispatch(info(toast))
-
-
         // client side validation
 
         const userData : UserRequest ={
@@ -54,11 +44,11 @@ const LoginPage: React.FC = (props : any) => {
     return (  
 
         <div>
-            <h2>Usuário autenticado</h2>
+            <h2>Login</h2>
             This is the login LoginPage
             <input type="email" name="email" value={values.email} onChange={handleChange}></input>
             <input type="password" name="password" value={values.password} onChange={handleChange}></input>
-            <button onClick={handleClick}>Send</button>
+            <button onClick={handleClick}>ENTRAR</button>
         </div>
 
     )

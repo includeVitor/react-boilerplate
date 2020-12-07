@@ -64,16 +64,19 @@ const toastReducer = (
             }
 
         case SUCCESS:
+            toast.success(action.payload.message, {autoClose: action.payload.time})
             return{
                 ...state
             }
 
         case WARNING:
+            toast.warning(action.payload.message, {autoClose: action.payload.time})
             return{
                 ...state
             }
 
         case ERROR:
+            toast.error(action.payload.message, {autoClose: action.payload.time})
             return{
                 ...state
             }
