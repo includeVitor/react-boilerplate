@@ -9,7 +9,13 @@ const Routes: React.FC = () => {
         <Router>
             <Suspense fallback={<h1>Carregando...</h1>}>
                 <Switch>
+
+                    {/* Public Routes */}
                     <Route exact path={LOGIN} component={() => <Login />} />
+
+                    {/* Private Routes Routes */}
+
+                    
                 </Switch>
             </Suspense>
         </Router>
