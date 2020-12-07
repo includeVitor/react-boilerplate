@@ -5,6 +5,7 @@ import { AppRouteProps } from "../../../types"
 import {MAIN}  from "../../CONSTANTS"
 
 const PublicRoute: React.FC<AppRouteProps> = ({component: Component, authenticated, ...rest}) => {
+
     return (  
         <Route
             {...rest}

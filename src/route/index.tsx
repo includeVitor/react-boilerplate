@@ -8,9 +8,9 @@ const Routes: React.FC = () => {
         <Router>
             <Switch>
 
-                <PublicRoutes />
-
                 <PrivateRoutes/>
+
+                <PublicRoutes />              
 
             </Switch>
         </Router>
