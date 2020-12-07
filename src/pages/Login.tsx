@@ -1,6 +1,4 @@
 import React, { useState } from "react"
-import { useDispatch, useSelector, useStore } from "react-redux"
-import { RootState } from "../store"
 import { authService } from "../services"
 import { UserRequest } from "../types"
 import { useHistory } from "react-router-dom"
@@ -33,8 +31,7 @@ const LoginPage: React.FC = (props : any) => {
             password: values.password
         }
         
-        
-        authService.login(userData, history)
+        authService.loginUser(userData, history)
     }
 
 

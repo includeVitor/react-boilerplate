@@ -1,12 +1,13 @@
 import api from './api'
 import { UserRequest } from '../types'
-import { MAIN } from '../route/CONSTANTS'
+import { login, logout } from "../store/ducks/auth"
+import store from "../store"
 
 export const authService = {
-    login
+    loginUser
 }
 
-async function login(user : UserRequest, history : any){
+async function loginUser(user : UserRequest, history : any){
 
     try{
         let result = await api.post(`/login`,{email : user.email, password : user.password})
@@ -17,8 +18,12 @@ async function login(user : UserRequest, history : any){
             localStorage.setItem('token', token)
             api.defaults.headers.common['Authorization'] = token
             
+            //dispatch
+            store.dispatch(login())
+
             //route
-            history.push(MAIN)
+            history.push("/Main")
+            
         }else{
             // toast message notification
             console.log(result.data)
@@ -29,4 +34,6 @@ async function login(user : UserRequest, history : any){
         console.log(error)
         //console.log(error.response.data)
     }
+
+    
 }
