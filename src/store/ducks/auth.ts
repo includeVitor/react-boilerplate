@@ -10,8 +10,8 @@ interface AuthState {
 const LOGIN = 'auth/login';
 const LOGOUT = 'auth/logout';
 
-type LoginAction = Action<typeof LOGIN>;
-type LogoutAction = Action<typeof LOGOUT>;
+type LoginAction = Action<typeof LOGIN>
+type LogoutAction = Action<typeof LOGOUT>
 
 export const login = (): LoginAction => ({
   type: LOGIN
