@@ -3,7 +3,8 @@ import { Error } from "../../types"
 
 interface UiState{
     loading:boolean,
-    errors: Error | null
+    // errors: Error | null
+    errors: number | null
 }
 
 const SET_ERRORS = 'ui/set_errors'
@@ -13,12 +14,21 @@ const LOADING_UI = 'ui/loading_ui'
 
 interface SetErrorsAction extends Action<typeof SET_ERRORS> {
     payload: {
-      errors: Error[]
+      //errors: Error[] | null
+      errors: string | null
     }
 }
   
+//type SetErrorsAction = Action<typeof SET_ERRORS>
 type ClearErrorsAction = Action<typeof CLEAR_ERRORS>
 type LoadingUIAction = Action<typeof LOADING_UI>
+
+
+
+export const set_errors = (value : string) : SetErrorsAction => ({
+    type: SET_ERRORS,
+    payload : {errors: value}
+})
 
 export const clear_errors = () : ClearErrorsAction => ({
     type: CLEAR_ERRORS
@@ -41,11 +51,11 @@ const uiReducer = (
     switch(action.type){
 
         case SET_ERRORS:
-            const { errors } = action.payload
+            //const { errors } = action.payload
 
             return{
                 ...state,
-                errors: errors
+                errors: action.payload
             }
     
         case CLEAR_ERRORS:

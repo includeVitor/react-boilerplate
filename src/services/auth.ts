@@ -1,6 +1,7 @@
 import api from './api'
-import { UserRequest } from '../types'
+import { UserRequest, Error } from '../types'
 import { login, logout } from "../store/ducks/auth"
+import { set_errors } from "../store/ducks/ui"
 import store from "../store"
 
 export const authService = {
@@ -26,11 +27,23 @@ async function loginUser(user : UserRequest, history : any){
             
         }else{
             // toast message notification
-            console.log(result.data)
+
+            // const newErrors = Array<Error>()
+            // newErrors[0] = {
+            //     code: 200,
+            //     description: "deu ruim"
+            // }
+
+            //dispatch
+            //store.dispatch({type: 'ui/set_errors', payload: { errors :newError} })
+            //store.dispatch(set_errors())
+            //console.log(result.data)
         }
 
     }catch(error){
         //if something wrong happen
+        //store.dispatch({type: 'ui/set_errors', payload: { errors: "test"} })
+        store.dispatch(set_errors("testzzz"))
         console.log(error)
         //console.log(error.response.data)
     }
