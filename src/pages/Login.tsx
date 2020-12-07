@@ -17,6 +17,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import EmailIcon from '@material-ui/icons/Email';
+import LockIcon from '@material-ui/icons/Lock';
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -45,7 +47,6 @@ const LoginPage: React.FC = (props : any) => {
         e.preventDefault()
 
         // client side validation
-
         const userData : UserRequest ={
             email: values.email,
             password: values.password
@@ -55,19 +56,25 @@ const LoginPage: React.FC = (props : any) => {
     }
 
     const useStyles = makeStyles((theme) => ({
+        main: {
+            display:'flex',
+            flexDirection:'row',
+            alignItems:'center',
+            justifyContent: 'center',
+            alignContent: 'center',
+        },
         paper: {
-          marginTop: theme.spacing(8),
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          justifyContent: 'space-between',
+          alignItems: 'center'
         },
         avatar: {
           margin: theme.spacing(1),
           backgroundColor: theme.palette.secondary.main,
         },
         form: {
-          width: '100%', // Fix IE 11 issue.
-          marginTop: theme.spacing(1),
+          width: '100%',
+          marginTop: theme.spacing(8),
         },
         submit: {
           margin: theme.spacing(3, 0, 2),
@@ -78,56 +85,67 @@ const LoginPage: React.FC = (props : any) => {
     
     return (  
 
-        <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-            {/* <Avatar className={classes.avatar}> */}
-                {/* <LockOutlinedIcon /> */}
-            {/* </Avatar> */}
-            {/* <Typography component="h1" variant="h5">
-            Sign in
-            </Typography> */}
-            <form className={classes.form} noValidate>
-            <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-            />
-            <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-            />
-            {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-            /> */}
-            <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-            >
-                Entrar
-            </Button>
-            </form>
-        </div>
-        {/* <Box mt={8}>
-            <Copyright />
-        </Box> */}
+        <Container  className={classes.main} >
+
+            <Grid className={classes.paper} >
+                <Typography variant="h5" component="h5">
+                    Faça login na plataforma
+                </Typography>
+                
+                <form className={classes.form} noValidate>  
+                    <Grid container spacing={2} alignItems="flex-end">
+                        <Grid item xs={1} >
+                            <EmailIcon />
+                        </Grid>
+                        <Grid item xs={11} >
+                            <TextField
+                                id="standard-full-width"
+                                placeholder="E-mail"
+                                fullWidth
+                                value={values.email}
+                                name="email"
+                                onChange={handleChange}
+                                margin="normal"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />  
+                        </Grid>
+                    </Grid>
+
+                    <Grid container spacing={2} alignItems="flex-end">
+                        <Grid item xs={1}>
+                            <LockIcon />
+                        </Grid>
+                        <Grid item xs={11}>
+                            <TextField
+                                id="standard-full-width"
+                                placeholder="Senha"
+                                fullWidth
+                                value={values.password}
+                                name="password"
+                                onChange={handleChange}
+                                margin="normal"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />  
+                        </Grid>
+                    </Grid>
+
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={handleClick}
+                    >
+                        Entrar
+                    </Button>
+                </form>
+                
+            </Grid>
         </Container>
     )
 
