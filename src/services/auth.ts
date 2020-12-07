@@ -9,16 +9,15 @@ async function login(user : UserRequest, history : any){
 
     try{
         let result = await api.post(`/login`,{email : user.email, password : user.password})
-        if(result.data.sucess){
-            //implementing auth
-            const token = `Bearer ${result.data.accessToken}`
-            localStorage.setItem('token', `Bearer ${result.data.accessToken}`)
-            api.defaults.headers.commom['Authorization'] = token
+        if(result.data.success){
 
-            //redirect
+            //auth 
+            const token = `Bearer ${result.data.data.accessToken}`
+            localStorage.setItem('token', token)
+            api.defaults.headers.common['Authorization'] = token
             
-            console.log(result.data)
-            history.push('/gewq')
+            //route
+            history.push('/')
         }else{
             // toast message notification
             console.log(result.data)

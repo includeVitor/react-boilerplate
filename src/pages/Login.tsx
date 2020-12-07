@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom"
 const LoginPage: React.FC = (props : any) => {
 
     const history =  useHistory()
-    
+
     const [values, setValues] = useState({
         email: "",
         password: ""
@@ -32,6 +32,7 @@ const LoginPage: React.FC = (props : any) => {
             email: values.email,
             password: values.password
         }
+        
         
         authService.login(userData, history)
     }
