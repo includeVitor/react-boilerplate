@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 const MainPage: React.FC = (props: any) => {
 
-    console.log(props.ui.errors)
 
     return (
         <div>Página Inicial</div>

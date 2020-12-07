@@ -3,6 +3,7 @@ import './App.css'
 import Routes from './route' 
 import { CheckAuthentication } from "./route/CheckAuthentication"
 
+
 const App: React.FC = () => {
 
   useEffect(() => {
@@ -11,7 +12,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-        <Routes/>
+      <Routes/>
     </div>
   )
 }

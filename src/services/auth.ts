@@ -27,18 +27,7 @@ async function loginUser(user : UserRequest, history : any){
             history.push("/Main")
             
         }else{
-            // toast message notification
 
-            // const newErrors = Array<Error>()
-            // newErrors[0] = {
-            //     code: 200,
-            //     description: "deu ruim"
-            // }
-
-            //dispatch
-            //store.dispatch({type: 'ui/set_errors', payload: { errors :newError} })
-            //store.dispatch(set_errors())
-            //console.log(result.data)
         }
 
     }catch(error){
@@ -58,7 +47,6 @@ async function loginUser(user : UserRequest, history : any){
             })
 
             store.dispatch(set_errors(errors))
-        
         }
 
     }

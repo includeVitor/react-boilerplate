@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { authService } from "../services"
 import { UserRequest } from "../types"
 import { useHistory } from "react-router-dom"
-import { connect } from "react-redux"
  
 
 const LoginPage: React.FC = (props : any) => { 
@@ -17,14 +16,6 @@ const LoginPage: React.FC = (props : any) => {
     const [errors, setErrors] = useState({
         error: null
     })
-
-    useEffect(() => {
-        // if (props.ui.errors) {
-        //     setErrors(props.ui.errors);
-        // }
-        console.log(props.ui.errors)
-
-    }, [props.ui])
 
     const handleChange = (e: any) => {
         e.persist();
@@ -44,7 +35,7 @@ const LoginPage: React.FC = (props : any) => {
             password: values.password
         }
         
-        authService.loginUser(userData, history)
+        authService.loginUser(userData, history)    
     }
 
 
@@ -61,10 +52,5 @@ const LoginPage: React.FC = (props : any) => {
     )
 
 }
-
-const mapStateToProps = (state: any) => ({
-    ui: state.ui,
-    auth: state.auth
-});
  
-export default connect(mapStateToProps) (LoginPage)
+export default LoginPage
