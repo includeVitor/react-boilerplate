@@ -1,22 +1,21 @@
 import jwtDecode from "jwt-decode"
-import { useDispatch } from "react-redux"
 import { login, logout } from "../store/ducks/auth"
 import api from "../services/api"
+import store from "../store"
 
 
 
 export const CheckAuthentication = () => {
 
     const authToken = localStorage.token
-    const dispatch = useDispatch()
     
     if(authToken){
         const decodedToken:any = jwtDecode(authToken)
 
         if(decodedToken.exp * 1000 < Date.now()){
-            dispatch(logout())
+            store.dispatch(logout())
         }else{
-            dispatch(login())
+            store.dispatch(login())
             api.defaults.headers.common["Authorization"] = authToken
         }
     }
