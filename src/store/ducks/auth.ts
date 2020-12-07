@@ -50,4 +50,4 @@ const authReducer = (
   }
 };
 
-export default authReducer;
+export default authReducer
