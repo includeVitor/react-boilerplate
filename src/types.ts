@@ -16,3 +16,8 @@ export interface AppRouteProps extends RouteProps{
     authenticated: boolean,
     rest?: any
 }
+
+export interface Error{
+    code: number,
+    description: string
+}
