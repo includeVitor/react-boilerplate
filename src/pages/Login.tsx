@@ -92,6 +92,11 @@ const LoginPage: React.FC = (props : any) => {
             borderRadius: 5,
             border: '1px solid #dadce0',
             backgroundColor: '#fff'
+        },
+        button : {
+            marginTop: 15,
+            justifyContent: 'flex-end',
+            display: 'flex'
         }
     }));
     
@@ -115,6 +120,7 @@ const LoginPage: React.FC = (props : any) => {
 
                 <form className={classes.form}>
                     <Grid container>
+                        
                         <Grid item lg={12}>
                             <TextField
                                 id="standard-full-width"
@@ -127,7 +133,8 @@ const LoginPage: React.FC = (props : any) => {
                                 variant="outlined"
                             />  
                         </Grid>
-                        <Grid item lg={12} >
+                        
+                        <Grid item lg={12}>
                             <TextField
                                 id="standard-full-width"
                                 fullWidth
@@ -140,7 +147,7 @@ const LoginPage: React.FC = (props : any) => {
                             />  
                         </Grid>
 
-                         <Grid item lg={4} >
+                         <Grid item lg={12} className={classes.button}>
                             <Button
                                 type="submit"
                                 variant="contained"
@@ -151,7 +158,7 @@ const LoginPage: React.FC = (props : any) => {
                                 Entrar
                             </Button>
                         </Grid>
-                        
+
                     </Grid>
 
                 </form>
