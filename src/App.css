@@ -15,3 +15,8 @@ html, body, #root{
   padding: 0px;
   box-sizing: border-box;
 }
+
+body{
+  font-family: Roboto, sans-serif;
+  background-color:#fafafa;
+}

@@ -20,6 +20,7 @@ import Container from '@material-ui/core/Container';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import Paper from '@material-ui/core/Paper';
+import TouchAppIcon from '@material-ui/icons/TouchApp';
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -77,7 +78,20 @@ const LoginPage: React.FC = (props : any) => {
             flexDirection: 'column',
             alignSelf: 'center',
             width: '100%',
-            maxWidth: 480
+            maxWidth: 480,
+            alignItems: 'center'
+        },
+        form: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignSelf: 'center',
+            width: '100%',
+            maxWidth: 480,
+            alignItems: 'center',
+            padding: 68,
+            borderRadius: 5,
+            border: '1px solid #dadce0',
+            backgroundColor: '#fff'
         }
     }));
     
@@ -91,67 +105,55 @@ const LoginPage: React.FC = (props : any) => {
                     
                 <div  className={classes.item}>
 
-                    <Typography variant="h4" component="h4">
-                        Logo
-                    </Typography>
-
+                    <TouchAppIcon style={{ fontSize: 75, marginBottom: 10 }}/>
 
                     <Typography variant="h3" component="h3">
-                        Faça login na plataforma
+                        Entre na plataforma
                     </Typography>
             
                 </div>
-                <form className={classes.item}>  
-                    <Grid container spacing={1} alignItems="flex-end">
-                        <Grid item xs={1} >
-                            <EmailIcon />
-                        </Grid>
-                        <Grid item xs={11} >
+
+                <form className={classes.form}>
+                    <Grid container>
+                        <Grid item lg={12}>
                             <TextField
                                 id="standard-full-width"
-                                placeholder="E-mail"
                                 fullWidth
                                 value={values.email}
                                 name="email"
                                 onChange={handleChange}
                                 margin="normal"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
+                                label="E-mail" 
+                                variant="outlined"
                             />  
                         </Grid>
-                    </Grid>
-
-                    <Grid container spacing={1} alignItems="flex-end">
-                        <Grid item xs={1}>
-                            <LockIcon />
-                        </Grid>
-                        <Grid item xs={11}>
+                        <Grid item lg={12} >
                             <TextField
                                 id="standard-full-width"
-                                placeholder="Senha"
                                 fullWidth
                                 type="passsword"
                                 value={values.password}
                                 name="password"
                                 onChange={handleChange}
-                                margin="normal"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
+                                label="Senha" 
+                                variant="outlined"
                             />  
                         </Grid>
+
+                         <Grid item lg={4} >
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                onClick={handleClick}
+                                size="medium"
+                            >
+                                Entrar
+                            </Button>
+                        </Grid>
+                        
                     </Grid>
 
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        onClick={handleClick}
-                    >
-                        Entrar
-                    </Button>
                 </form>
                 
             </div>
