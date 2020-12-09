@@ -19,6 +19,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
+import Paper from '@material-ui/core/Paper';
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -56,44 +57,52 @@ const LoginPage: React.FC = (props : any) => {
     }
 
     const useStyles = makeStyles((theme) => ({
-        main: {
-            display:'flex',
-            flexDirection:'row',
-            alignItems:'center',
-            justifyContent: 'center',
-            alignContent: 'center',
+        main:{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            flex: '1 1 0%',
+            width: '100%',
+            maxWidth: 1000,
+            padding: 32,
+            justifyContent: 'center'
         },
-        paper: {
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
+        content : {
+            width: '100%',
+            display: 'flex',           
+            justifyContent: 'space-between'
         },
-        avatar: {
-          margin: theme.spacing(1),
-          backgroundColor: theme.palette.secondary.main,
-        },
-        form: {
-          width: '100%',
-          marginTop: theme.spacing(8),
-        },
-        submit: {
-          margin: theme.spacing(3, 0, 2),
-        },
+        item: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignSelf: 'center',
+            width: '100%',
+            maxWidth: 480
+        }
     }));
     
     const classes = useStyles();
     
     return (  
 
-        <Container  className={classes.main} >
+        <div className={classes.main}>
 
-            <Grid className={classes.paper} >
-                <Typography variant="h5" component="h5">
-                    Faça login na plataforma
-                </Typography>
-                
-                <form className={classes.form} noValidate>  
-                    <Grid container spacing={2} alignItems="flex-end">
+            <div className={classes.content}>
+                    
+                <div  className={classes.item}>
+
+                    <Typography variant="h4" component="h4">
+                        Logo
+                    </Typography>
+
+
+                    <Typography variant="h3" component="h3">
+                        Faça login na plataforma
+                    </Typography>
+            
+                </div>
+                <form className={classes.item}>  
+                    <Grid container spacing={1} alignItems="flex-end">
                         <Grid item xs={1} >
                             <EmailIcon />
                         </Grid>
@@ -113,7 +122,7 @@ const LoginPage: React.FC = (props : any) => {
                         </Grid>
                     </Grid>
 
-                    <Grid container spacing={2} alignItems="flex-end">
+                    <Grid container spacing={1} alignItems="flex-end">
                         <Grid item xs={1}>
                             <LockIcon />
                         </Grid>
@@ -122,6 +131,7 @@ const LoginPage: React.FC = (props : any) => {
                                 id="standard-full-width"
                                 placeholder="Senha"
                                 fullWidth
+                                type="passsword"
                                 value={values.password}
                                 name="password"
                                 onChange={handleChange}
@@ -138,15 +148,14 @@ const LoginPage: React.FC = (props : any) => {
                         fullWidth
                         variant="contained"
                         color="primary"
-                        className={classes.submit}
                         onClick={handleClick}
                     >
                         Entrar
                     </Button>
                 </form>
                 
-            </Grid>
-        </Container>
+            </div>
+        </div>
     )
 
 }
