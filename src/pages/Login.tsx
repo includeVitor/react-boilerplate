@@ -1,32 +1,18 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { authService } from "../services"
 import { UserRequest } from "../types"
-import { useDispatch } from "react-redux"
-import { useHistory, useLocation } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-// import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import EmailIcon from '@material-ui/icons/Email';
-import LockIcon from '@material-ui/icons/Lock';
-import Paper from '@material-ui/core/Paper';
 import TouchAppIcon from '@material-ui/icons/TouchApp';
 
 const LoginPage: React.FC = (props : any) => { 
     
     const history =  useHistory()
-
-    const dispatch = useDispatch();
     
     const [values, setValues] = useState({
         email: "",
@@ -104,11 +90,11 @@ const LoginPage: React.FC = (props : any) => {
     
     return (  
 
-        <div className={classes.main}>
+        <Grid className={classes.main}>
 
-            <div className={classes.content}>
+            <Grid className={classes.content}>
                     
-                <div  className={classes.item}>
+                <Grid  className={classes.item}>
 
                     <TouchAppIcon style={{ fontSize: 75, marginBottom: 10 }}/>
 
@@ -116,13 +102,14 @@ const LoginPage: React.FC = (props : any) => {
                         Entre na plataforma
                     </Typography>
             
-                </div>
+                </Grid>
 
                 <form className={classes.form}>
                     <Grid container>
                         
                         <Grid item lg={12}>
                             <TextField
+                                required
                                 id="standard-full-width"
                                 fullWidth
                                 value={values.email}
@@ -131,11 +118,14 @@ const LoginPage: React.FC = (props : any) => {
                                 margin="normal"
                                 label="E-mail" 
                                 variant="outlined"
+                                autoComplete="email"
+                                autoFocus
                             />  
                         </Grid>
                         
                         <Grid item lg={12}>
                             <TextField
+                                required
                                 id="standard-full-width"
                                 fullWidth
                                 type="passsword"
@@ -144,6 +134,7 @@ const LoginPage: React.FC = (props : any) => {
                                 onChange={handleChange}
                                 label="Senha" 
                                 variant="outlined"
+                                autoComplete="password"
                             />  
                         </Grid>
 
@@ -163,8 +154,8 @@ const LoginPage: React.FC = (props : any) => {
 
                 </form>
                 
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     )
 
 }
