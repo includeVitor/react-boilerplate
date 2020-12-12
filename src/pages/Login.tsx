@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { authService } from "../services"
-import { UserRequest } from "../types"
+import { UserRequest, UserRequestError } from "../types"
 import { useHistory } from "react-router-dom"
 
 import Button from '@material-ui/core/Button';
@@ -18,10 +18,11 @@ const LoginPage: React.FC = (props : any) => {
         email: "",
         password: ""
     } as UserRequest)
+ 
+    const [errors, setErrors] = useState({} as UserRequestError)
 
-    const [errors, setErrors] = useState({
-        error: null
-    })
+    const hasError = (field: string) => !!errors[field]
+    const getError = (field: string) => errors[field]   
 
     const handleChange = (e: any) => {
         e.persist();
@@ -31,19 +32,33 @@ const LoginPage: React.FC = (props : any) => {
          }));
     }
 
-    const handleClick = (e: any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault()
 
         // client side validation
+        const form = e.target
+        const isValid = form.checkValidity()
+        const formData = new FormData(form)
+        const errorMessages = Array.from(formData.keys()).reduce((acc: any, key: any) => {
+            acc[key] = form.elements[key].validationMessage
+            return acc
+        },{})
 
+        setErrors(errorMessages)
 
+        if(isValid){
+            const data = Array.from(formData.keys()).reduce((acc: any,key: any) => {
+                acc[key] = formData.get(key)
+                return acc
+            }, {})
+        }
 
         const userData : UserRequest ={
             email: values.email,
             password: values.password
         }
         
-        authService.loginUser(userData, history)    
+        //authService.loginUser(userData, history)    
     }
 
     const useStyles = makeStyles((theme) => ({
@@ -107,14 +122,13 @@ const LoginPage: React.FC = (props : any) => {
             
                 </Grid>
 
-                <form className={classes.form} noValidate> 
+                <form className={classes.form} noValidate onSubmit={handleSubmit}> 
                     <Grid container>
                         
                         <Grid item lg={12}>
                             <TextField
-                                required
+                                type="email"
                                 id="standard-full-width"
-                                fullWidth
                                 value={values.email}
                                 name="email"
                                 onChange={handleChange}
@@ -122,21 +136,27 @@ const LoginPage: React.FC = (props : any) => {
                                 label="E-mail" 
                                 variant="outlined"
                                 autoComplete="email"
+                                helperText={getError('email')}
+                                error={hasError('email')}
                                 autoFocus
+                                fullWidth
+                                required
                             />  
                         </Grid>
                         
                         <Grid item lg={12}>
                             <TextField
-                                required
-                                id="standard-full-width"
-                                fullWidth
                                 type="password"
+                                id="standard-full-width"
                                 value={values.password}
                                 name="password"
                                 onChange={handleChange}
                                 label="Senha" 
                                 variant="outlined"
+                                helperText={getError('password')}
+                                error={hasError('password')}
+                                required
+                                fullWidth
                             />  
                         </Grid>
 
@@ -145,7 +165,6 @@ const LoginPage: React.FC = (props : any) => {
                                 type="submit"
                                 variant="contained"
                                 color="primary"
-                                onClick={handleClick}
                                 size="medium"
                             >
                                 Entrar

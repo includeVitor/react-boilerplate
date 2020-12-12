@@ -5,6 +5,11 @@ export interface UserRequest{
     password:string
 }
 
+export type UserRequestError = {
+    [index: string] :string
+}
+
+
 export interface User{
     id: string,
     name:string 
