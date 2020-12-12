@@ -35,6 +35,9 @@ const LoginPage: React.FC = (props : any) => {
         e.preventDefault()
 
         // client side validation
+
+
+
         const userData : UserRequest ={
             email: values.email,
             password: values.password
@@ -104,7 +107,7 @@ const LoginPage: React.FC = (props : any) => {
             
                 </Grid>
 
-                <form className={classes.form}>
+                <form className={classes.form} noValidate> 
                     <Grid container>
                         
                         <Grid item lg={12}>
@@ -128,13 +131,12 @@ const LoginPage: React.FC = (props : any) => {
                                 required
                                 id="standard-full-width"
                                 fullWidth
-                                type="passsword"
+                                type="password"
                                 value={values.password}
                                 name="password"
                                 onChange={handleChange}
                                 label="Senha" 
                                 variant="outlined"
-                                autoComplete="password"
                             />  
                         </Grid>
 

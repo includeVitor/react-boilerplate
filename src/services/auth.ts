@@ -32,7 +32,8 @@ async function loginUser(user : UserRequest, history : any){
 
     }catch(error){
 
-        if(error.response.data){
+        if('reponse' in error &&
+            'data' in error.response){ 
             
             let data : any = error.response.data
             var items: Error[] = []
