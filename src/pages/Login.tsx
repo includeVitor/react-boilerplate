@@ -24,12 +24,16 @@ const LoginPage: React.FC = (props : any) => {
     const hasError = (field: string) => !!errors[field]
     const getError = (field: string) => errors[field]   
 
+
     const handleChange = (e: any) => {
         e.persist();
+        const input = e.target
+        const isValid = input.checkValidity
         setValues(values => ({
             ...values,
-            [e.target.name]: e.target.value
-         }));
+            [input.name]: input.value
+        }));
+        setErrors({ ...errors, [input.name]: input.validationMessage})
     }
 
     const handleSubmit = (e: any) => {
