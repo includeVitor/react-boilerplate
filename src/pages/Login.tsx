@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
 import TouchAppIcon from '@material-ui/icons/TouchApp'
-import {FORGOT} from "../route/CONSTANTS"
+import {FORGOT, SIGNUP} from "../route/CONSTANTS"
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -69,6 +69,11 @@ const LoginPage: React.FC = (props : any) => {
     const handleRedirectForgot = (e :any) => {
         e.preventDefault()
         history.push(FORGOT)
+    }
+
+    const handleRedirectRegister = (e: any) => {
+        e.preventDefault()
+        history.push(SIGNUP)
     }
 
     const useStyles = makeStyles((theme) => ({
@@ -188,14 +193,11 @@ const LoginPage: React.FC = (props : any) => {
                         </Grid>
 
                         <Grid item lg={6} className={classes.buttonRegister}>
-                            <Button
-                                type="submit"
-                                variant="outlined"
-                                color="primary"
-                                size="medium"
-                            >
-                                Registrar
-                            </Button>
+                            <Typography>
+                                <Link href={SIGNUP} onClick={handleRedirectRegister}>
+                                    Registrar
+                                </Link>
+                            </Typography>
                         </Grid>
 
                         <Grid item lg={6} className={classes.buttonSubmit}>
