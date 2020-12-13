@@ -1,13 +1,13 @@
 import React from "react"
 
-const RegisterPage: React.FC = () => {
+const SignupPage: React.FC = () => {
     return (  
 
         <div>
-            This is the login RegisterPage
+            This is the login SignupPage
             <button>Entrar</button>
         </div>
     );
 }
  
-export default RegisterPage;
+export default SignupPage;

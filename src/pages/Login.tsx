@@ -3,13 +3,14 @@ import { authService } from "../services"
 import { UserRequest, UserRequestError } from "../types"
 import { useHistory } from "react-router-dom"
 
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
-import TouchAppIcon from '@material-ui/icons/TouchApp';
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Link from '@material-ui/core/Link'
+import { makeStyles } from '@material-ui/core/styles'
+import TouchAppIcon from '@material-ui/icons/TouchApp'
+import {FORGOT} from "../route/CONSTANTS"
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -25,6 +26,14 @@ const LoginPage: React.FC = (props : any) => {
     const hasError = (field: string) => !!errors[field]
 
     const getError = (field: string) => errors[field]   
+
+    function ableToSubmit (value : any) {
+
+        if('email' in errors || 'password' in errors )
+            return !(errors.email === "" && errors.password === "" && values.email !== "" && values.password !== "")
+        else
+            return true
+    }
 
     const handleChange = (e: any) => {
         e.persist();
@@ -58,12 +67,9 @@ const LoginPage: React.FC = (props : any) => {
         authService.loginUser(userData, history)    
     }
 
-    function ableToSubmit (value : any) {
-
-        if('email' in errors || 'password' in errors )
-            return !(errors.email === "" && errors.password === "" && values.email !== "" && values.password !== "")
-        else
-            return true
+    const handleRedirectForgot = (e :any) => {
+        e.preventDefault()
+        history.push(FORGOT)
     }
 
     const useStyles = makeStyles((theme) => ({
@@ -175,7 +181,7 @@ const LoginPage: React.FC = (props : any) => {
 
                         <Grid item lg={12} className={classes.forgot}>
                             <Typography>
-                                <Link href="#">
+                                <Link href={FORGOT} onClick={handleRedirectForgot}>
                                     Esqueci minha senha
                                 </Link>
                             </Typography>
