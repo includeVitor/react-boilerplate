@@ -9,7 +9,6 @@ export type UserRequestError = {
     [index: string] :string
 }
 
-
 export interface User{
     id: string,
     name:string 
@@ -34,4 +33,8 @@ export interface Errors{
 export interface Toast{
     time?:number,
     message:string
+}
+
+export interface Forgot{
+    email: string
 }

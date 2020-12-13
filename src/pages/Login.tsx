@@ -36,7 +36,6 @@ const LoginPage: React.FC = (props : any) => {
     }
 
     const handleChange = (e: any) => {
-        e.persist();
         const input = e.target
         setValues(values => ({
             ...values,
@@ -144,7 +143,7 @@ const LoginPage: React.FC = (props : any) => {
                 </Grid>
 
                 <form className={classes.form} noValidate onSubmit={handleSubmit}> 
-                
+
                     <Grid container>
                         
                         <Grid item lg={12}>
