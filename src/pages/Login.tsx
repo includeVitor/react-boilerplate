@@ -144,6 +144,7 @@ const LoginPage: React.FC = (props : any) => {
                 </Grid>
 
                 <form className={classes.form} noValidate onSubmit={handleSubmit}> 
+                
                     <Grid container>
                         
                         <Grid item lg={12}>
@@ -197,7 +198,6 @@ const LoginPage: React.FC = (props : any) => {
                                 Registrar
                             </Button>
                         </Grid>
-
 
                         <Grid item lg={6} className={classes.buttonSubmit}>
                             <Button

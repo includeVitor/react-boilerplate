@@ -1,12 +1,14 @@
+import { Grid, Typography } from "@material-ui/core";
 import React from "react"
 
 const SignupPage: React.FC = () => {
     return (  
 
-        <div>
-            This is the login SignupPage
-            <button>Entrar</button>
-        </div>
+        <Grid>
+            <Typography>
+                Recuperar senha
+            </Typography>
+        </Grid>
     );
 }
  
