@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import TouchAppIcon from '@material-ui/icons/TouchApp';
 
@@ -28,7 +29,6 @@ const LoginPage: React.FC = (props : any) => {
     const handleChange = (e: any) => {
         e.persist();
         const input = e.target
-        const isValid = input.checkValidity
         setValues(values => ({
             ...values,
             [input.name]: input.value
@@ -41,7 +41,6 @@ const LoginPage: React.FC = (props : any) => {
 
         // client side validation
         const form = e.target
-        const isValid = form.checkValidity()
         const formData = new FormData(form)
         const errorMessages = Array.from(formData.keys()).reduce((acc: any, key: any) => {
             acc[key] = form.elements[key].validationMessage
@@ -49,13 +48,6 @@ const LoginPage: React.FC = (props : any) => {
         },{})
 
         setErrors(errorMessages)
-
-        if(isValid){
-            const data = Array.from(formData.keys()).reduce((acc: any,key: any) => {
-                acc[key] = formData.get(key)
-                return acc
-            }, {})
-        }
 
         const userData : UserRequest ={
             email: values.email,
@@ -71,7 +63,7 @@ const LoginPage: React.FC = (props : any) => {
         if('email' in errors || 'password' in errors )
             return !(errors.email === "" && errors.password === "" && values.email !== "" && values.password !== "")
         else
-            return false
+            return true
     }
 
     const useStyles = makeStyles((theme) => ({
@@ -110,9 +102,19 @@ const LoginPage: React.FC = (props : any) => {
             border: '1px solid #dadce0',
             backgroundColor: '#fff'
         },
-        button : {
+        forgot: {
             marginTop: 15,
+            justifyContent: 'flex-start',
+            display: 'flex'
+        },
+        buttonSubmit : {
+            marginTop: 40,
             justifyContent: 'flex-end',
+            display: 'flex'
+        },
+        buttonRegister : {
+            marginTop: 40,
+            justifyContent: 'flex-start',
             display: 'flex'
         }
     }));
@@ -171,7 +173,27 @@ const LoginPage: React.FC = (props : any) => {
                             />  
                         </Grid>
 
-                         <Grid item lg={12} className={classes.button}>
+                        <Grid item lg={12} className={classes.forgot}>
+                            <Typography>
+                                <Link href="#">
+                                    Esqueci minha senha
+                                </Link>
+                            </Typography>
+                        </Grid>
+
+                        <Grid item lg={6} className={classes.buttonRegister}>
+                            <Button
+                                type="submit"
+                                variant="outlined"
+                                color="primary"
+                                size="medium"
+                            >
+                                Registrar
+                            </Button>
+                        </Grid>
+
+
+                        <Grid item lg={6} className={classes.buttonSubmit}>
                             <Button
                                 type="submit"
                                 variant="contained"
