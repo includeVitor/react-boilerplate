@@ -22,8 +22,8 @@ const LoginPage: React.FC = (props : any) => {
     const [errors, setErrors] = useState({} as UserRequestError)
 
     const hasError = (field: string) => !!errors[field]
-    const getError = (field: string) => errors[field]   
 
+    const getError = (field: string) => errors[field]   
 
     const handleChange = (e: any) => {
         e.persist();
@@ -62,7 +62,16 @@ const LoginPage: React.FC = (props : any) => {
             password: values.password
         }
         
-        //authService.loginUser(userData, history)    
+        //authentication
+        authService.loginUser(userData, history)    
+    }
+
+    function ableToSubmit (value : any) {
+
+        if('email' in errors || 'password' in errors )
+            return !(errors.email === "" && errors.password === "" && values.email !== "" && values.password !== "")
+        else
+            return false
     }
 
     const useStyles = makeStyles((theme) => ({
@@ -132,7 +141,6 @@ const LoginPage: React.FC = (props : any) => {
                         <Grid item lg={12}>
                             <TextField
                                 type="email"
-                                id="standard-full-width"
                                 value={values.email}
                                 name="email"
                                 onChange={handleChange}
@@ -151,7 +159,6 @@ const LoginPage: React.FC = (props : any) => {
                         <Grid item lg={12}>
                             <TextField
                                 type="password"
-                                id="standard-full-width"
                                 value={values.password}
                                 name="password"
                                 onChange={handleChange}
@@ -170,6 +177,7 @@ const LoginPage: React.FC = (props : any) => {
                                 variant="contained"
                                 color="primary"
                                 size="medium"
+                                disabled={ableToSubmit(errors)}
                             >
                                 Entrar
                             </Button>
