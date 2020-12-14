@@ -1,12 +1,12 @@
-import { AppBar, makeStyles, Typography, Badge, Toolbar, Drawer, Divider, List, Menu, MenuItem } from "@material-ui/core"
+import { AppBar, makeStyles, Typography, Toolbar, Drawer, Divider, List, Menu, MenuItem } from "@material-ui/core"
 import React, { useState } from "react"
 import { connect } from "react-redux"
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import clsx from 'clsx'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { authService } from "../../services"
 
 import { mainList } from './listItems'
 
@@ -25,15 +25,6 @@ const MainPage: React.FC = (props: any) => {
         setOpen(false);
     };
 
-
-    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     const menuId = 'primary-search-account-menu';
 
     const isMenuOpen = Boolean(anchorEl);
@@ -44,7 +35,7 @@ const MainPage: React.FC = (props: any) => {
 
     const handleMenuClose = () => {
         setAnchorEl(null);
-        alert('oi')
+        authService.logoutUser()
     };
 
 

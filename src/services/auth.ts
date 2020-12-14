@@ -4,10 +4,12 @@ import { login, logout } from "../store/ducks/auth"
 import { clear_errors, set_errors } from "../store/ducks/ui"
 import { error as ToastError } from "../store/ducks/toast"
 import store from "../store"
+import {MAIN}  from "../route/CONSTANTS"
 
 export const authService = {
     loginUser,
-    registerUser
+    registerUser,
+    logoutUser
 }
 
 async function loginUser(user : UserRequest, history : any){
@@ -27,7 +29,7 @@ async function loginUser(user : UserRequest, history : any){
             store.dispatch(clear_errors())
 
             //route
-            history.push("/Main")
+            history.push(MAIN)
             
         }
 
@@ -126,3 +128,8 @@ async function registerUser(user: UserRequestRegister, history: any){
 
 }
 
+async function logoutUser(){
+    localStorage.removeItem('token')
+    api.defaults.headers.common['Authorization'] = null
+    store.dispatch(logout())
+}
