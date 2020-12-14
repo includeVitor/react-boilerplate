@@ -38,3 +38,9 @@ export interface Toast{
 export interface Forgot{
     email: string
 }
+
+export interface UserRequestRegister{
+    email:string,
+    password:string,
+    password_confirmation: string
+}

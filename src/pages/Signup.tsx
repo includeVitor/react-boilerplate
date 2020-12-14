@@ -1,18 +1,68 @@
 import { Grid, makeStyles, Typography, TextField, Button, Link } from "@material-ui/core";
-import React from "react"
+import React, { useState } from "react"
 import EqualizerRoundedIcon from '@material-ui/icons/EqualizerRounded';
 import {LOGIN} from "../route/CONSTANTS"
 import { useHistory } from "react-router-dom";
+import { UserRequestError, UserRequestRegister } from "../types"
 
 const SignupPage: React.FC = () => {
 
 
     const history = useHistory()
 
+
+    const [errors, setErrors] = useState({} as UserRequestError)
+    const [values, setValues] = useState({email: "", password: "", password_confirmation: ""} as UserRequestRegister)
+
+
+    const handleSubmit = (e: any) => {
+       e.preventDefault() 
+
+       // client side validation
+       const form = e.target
+       const formData = new FormData(form)
+       const errorMessages = Array.from(formData.keys()).reduce((acc: any, key: any) => {
+           acc[key] = form.elements[key].validationMessage
+           return acc
+       },{})
+
+       setErrors(errorMessages)
+
+        const userRegisterData : UserRequestError ={
+            email: values.email,
+            password: values.password,
+            password_confirmation: values.password_confirmation
+        }
+
+        //registration
+
+    }
+
+    const handleChange = (e: any) => {
+        const input = e.target
+        setValues(values => ({
+            ...values,
+            [input.name]: input.value
+        }));
+        setErrors({ ...errors, [input.name]: input.validationMessage})
+    }
+
     const handleRedirectLogin = (e: any) => {
         e.preventDefault()
         history.push(LOGIN)
     }
+
+    function ableToSubmit (value : any) {
+
+        if('email' in errors || 'password' in errors || 'password_confirmation')
+            return !(errors.email === "" && errors.password === "" && errors.password_confirmation === "" && values.email !== "" && values.password !== "" && values.password_confirmation !== "")
+        else
+            return true
+    }
+
+    const hasError = (field: string) => !!errors[field]
+
+    const getError = (field: string) => errors[field]  
 
     const useStyles = makeStyles((theme) => ({
         main:{
@@ -71,7 +121,7 @@ const SignupPage: React.FC = () => {
     return (  
         <Grid className={classes.main}>
             <Grid className={classes.content}>
-                <form className={classes.registerForm} noValidate>
+                <form className={classes.registerForm} noValidate onSubmit={handleSubmit}>
                     <Grid container>
 
                         <Grid item lg={12}>
@@ -83,15 +133,15 @@ const SignupPage: React.FC = () => {
                         <Grid item lg={12}>
                             <TextField
                                 type="email"
-                                //value={values.email}
+                                value={values.email}
                                 name="email"
-                                //onChange={handleChange}
+                                onChange={handleChange}
                                 margin="normal"
                                 label="E-mail" 
                                 variant="outlined"
                                 autoComplete="email"
-                                //helperText={getError('email')}
-                                //error={hasError('email')}
+                                helperText={getError('email')}
+                                error={hasError('email')}
                                 autoFocus
                                 fullWidth
                                 required
@@ -100,14 +150,15 @@ const SignupPage: React.FC = () => {
 
                         <Grid item lg={12}>
                             <TextField
-                                //value={values.email}
+                                type="password"
+                                value={values.password}
                                 name="password"
-                                //onChange={handleChange}
+                                onChange={handleChange}
                                 margin="normal"
                                 label="Sua senha" 
                                 variant="outlined"
-                                //helperText={getError('email')}
-                                //error={hasError('email')}
+                                helperText={getError('password')}
+                                error={hasError('password')}
                                 fullWidth
                                 required
                             />  
@@ -115,14 +166,15 @@ const SignupPage: React.FC = () => {
 
                         <Grid item lg={12}>
                             <TextField
-                                //value={values.email}
+                                type="password"
+                                value={values.password_confirmation}
                                 name="password_confirmation"
-                                //onChange={handleChange}
+                                onChange={handleChange}
                                 margin="normal"
                                 label="Confirme sua senha" 
                                 variant="outlined"
-                                //helperText={getError('email')}
-                                //error={hasError('email')}
+                                helperText={getError('password_confirmation')}
+                                error={hasError('password_confirmation')}
                                 fullWidth
                                 required
                             />  
@@ -134,7 +186,7 @@ const SignupPage: React.FC = () => {
                                     variant="contained"
                                     color="primary"
                                     size="medium"
-                //                                disabled={ableToSubmit(errors)}
+                                    disabled={ableToSubmit(errors)}
                                 >
                                     Cadastrar
                             </Button>
@@ -153,7 +205,7 @@ const SignupPage: React.FC = () => {
                         Gerencie projetos com excelência
                     </Typography>
 
-                    <Grid lg={12}>
+                    <Grid item lg={12}>
                         <Typography className={classes.titleBack}>
                             <Link href={LOGIN} onClick={handleRedirectLogin}>
                                 Voltar para Login
