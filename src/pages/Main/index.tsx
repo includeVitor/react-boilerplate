@@ -1,5 +1,5 @@
 import { AppBar, makeStyles, Typography, Badge, Toolbar, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core"
-import React from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux"
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -14,73 +14,16 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
+import { mainList } from './listItems'
+
 const MainPage: React.FC = (props: any) => {
 
-
-
-   const mainListItems = (
-        <div>
-          <ListItem button>
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <ShoppingCartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Orders" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Customers" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Reports" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary="Integrations" />
-          </ListItem>
-        </div>
-      );
       
-      const secondaryListItems = (
-        <div>
-          <ListSubheader inset>Saved reports</ListSubheader>
-          <ListItem button>
-            <ListItemIcon>
-              <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Current month" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Last quarter" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Year-end sale" />
-          </ListItem>
-        </div>
-    );
-
-
+     
     const drawerWidth = 240;
 
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = useState(true);
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -145,14 +88,12 @@ const MainPage: React.FC = (props: any) => {
             marginRight: 36,
         },
         menuButtonHidden: {
-        display: 'none',
+            display: 'none',
         },
 
     }))
 
     const classes = useStyles()
-
-
 
     return (
 
@@ -182,7 +123,7 @@ const MainPage: React.FC = (props: any) => {
             <Drawer
             variant="permanent"
             classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
             }}
             open={open}
             >
@@ -192,9 +133,7 @@ const MainPage: React.FC = (props: any) => {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>{mainListItems}</List>
-                <Divider />
-                <List>{secondaryListItems}</List>
+                <List>{mainList}</List>
             </Drawer>
         </div>
     );

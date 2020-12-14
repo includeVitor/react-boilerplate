@@ -13,7 +13,7 @@ const App: React.FC = () => {
   }, [])
 
   return (
-    <div >
+    <div className="App">
       <Routes/>
       <ToastContainer autoClose={5000} />
     </div>
