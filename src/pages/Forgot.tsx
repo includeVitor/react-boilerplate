@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import {LOGIN} from "../route/CONSTANTS"
 import { useHistory } from "react-router-dom"
 import { Forgot, UserRequestError } from "../types"
+import { authService } from "../services"
 
 const ForgetPage: React.FC = () => {
     
@@ -31,6 +32,7 @@ const ForgetPage: React.FC = () => {
         setErrors(errorMessages)
 
         //forgot action
+        
     }
 
     const handleChange = (e: any) => {

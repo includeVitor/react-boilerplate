@@ -42,5 +42,5 @@ export interface Forgot{
 export interface UserRequestRegister{
     email:string,
     password:string,
-    password_confirmation: string
+    confirmPassword: string
 }

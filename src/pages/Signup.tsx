@@ -4,6 +4,7 @@ import EqualizerRoundedIcon from '@material-ui/icons/EqualizerRounded';
 import {LOGIN} from "../route/CONSTANTS"
 import { useHistory } from "react-router-dom";
 import { UserRequestError, UserRequestRegister } from "../types"
+import { authService } from "../services"
 
 const SignupPage: React.FC = () => {
 
@@ -12,13 +13,13 @@ const SignupPage: React.FC = () => {
 
     const [errors, setErrors] = useState({} as UserRequestError)
 
-    const [values, setValues] = useState({email: "", password: "", password_confirmation: ""} as UserRequestRegister)
+    const [values, setValues] = useState({email: "", password: "", confirmPassword: ""} as UserRequestRegister)
 
     const handleSubmit = (e: any) => {
        e.preventDefault() 
         
-      if(values.password !== values.password_confirmation){
-        setErrors({...errors, password_confirmation: "Senhas não conferem"})  
+      if(values.password !== values.confirmPassword){
+        setErrors({...errors, confirmPassword: "Senhas não conferem"})  
         return
       }
 
@@ -32,14 +33,14 @@ const SignupPage: React.FC = () => {
 
        setErrors(errorMessages)
 
-        const userRegisterData : UserRequestError ={
+        const userRegisterData : UserRequestRegister ={
             email: values.email,
             password: values.password,
-            password_confirmation: values.password_confirmation
+            confirmPassword: values.confirmPassword
         }
 
         //registration
-
+        authService.registerUser(userRegisterData, history)
     }
 
     const handleChange = (e: any) => {
@@ -58,8 +59,8 @@ const SignupPage: React.FC = () => {
 
     function ableToSubmit (value : any) {
 
-        if('email' in errors || 'password' in errors || 'password_confirmation')
-            return !(errors.email === "" && errors.password === "" && errors.password_confirmation === "" && values.email !== "" && values.password !== "" && values.password_confirmation !== "")
+        if('email' in errors || 'password' in errors || 'confirmPassword')
+            return !(errors.email === "" && errors.password === "" && errors.confirmPassword === "" && values.email !== "" && values.password !== "" && values.confirmPassword !== "")
         else
             return true
     }
@@ -171,14 +172,14 @@ const SignupPage: React.FC = () => {
                         <Grid item lg={12}>
                             <TextField
                                 type="password"
-                                value={values.password_confirmation}
-                                name="password_confirmation"
+                                value={values.confirmPassword}
+                                name="confirmPassword"
                                 onChange={handleChange}
                                 margin="normal"
                                 label="Confirme sua senha" 
                                 variant="outlined"
-                                helperText={getError('password_confirmation')}
-                                error={hasError('password_confirmation')}
+                                helperText={getError('confirmPassword')}
+                                error={hasError('confirmPassword')}
                                 fullWidth
                                 required
                             />  
