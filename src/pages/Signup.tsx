@@ -10,13 +10,17 @@ const SignupPage: React.FC = () => {
 
     const history = useHistory()
 
-
     const [errors, setErrors] = useState({} as UserRequestError)
-    const [values, setValues] = useState({email: "", password: "", password_confirmation: ""} as UserRequestRegister)
 
+    const [values, setValues] = useState({email: "", password: "", password_confirmation: ""} as UserRequestRegister)
 
     const handleSubmit = (e: any) => {
        e.preventDefault() 
+        
+      if(values.password !== values.password_confirmation){
+        setErrors({...errors, password_confirmation: "Senhas não conferem"})  
+        return
+      }
 
        // client side validation
        const form = e.target
@@ -191,9 +195,6 @@ const SignupPage: React.FC = () => {
                                     Cadastrar
                             </Button>
                         </Grid>
-
-
-
                     </Grid>
                 </form>
             
