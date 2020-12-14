@@ -1,9 +1,18 @@
-import { Grid, makeStyles, Typography, TextField, Button } from "@material-ui/core";
+import { Grid, makeStyles, Typography, TextField, Button, Link } from "@material-ui/core";
 import React from "react"
-
+import EqualizerRoundedIcon from '@material-ui/icons/EqualizerRounded';
+import {LOGIN} from "../route/CONSTANTS"
+import { useHistory } from "react-router-dom";
 
 const SignupPage: React.FC = () => {
 
+
+    const history = useHistory()
+
+    const handleRedirectLogin = (e: any) => {
+        e.preventDefault()
+        history.push(LOGIN)
+    }
 
     const useStyles = makeStyles((theme) => ({
         main:{
@@ -13,24 +22,46 @@ const SignupPage: React.FC = () => {
             width: '100%',
             maxWidth: 1000,
             padding: 32,
-            justifyContent: 'flex-start'
+            justifyContent: 'center'
         },
         content: {
             width: '100%',
             display: 'flex',
             justifyContent: 'space-between'
         },
+        title: {
+            textAlign: 'center',
+            fontWeight: 'bold'
+        },
         registerForm: {
             display: 'flex',
             flexDirection: 'column',
             width: '100%',
             maxWidth: 480,
-            padding: 45,
-            marginTop: 15
+            padding: 25,
+            marginTop: 15,
+            borderRadius: 5,
+            alignItems: 'center',
+            border: '1px solid #dadce0',
+            backgroundColor: '#fff'
+        },
+        item: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignSelf: 'center',
+            width: '100%',
+            maxWidth: 480,
+            alignItems: 'center',
+            padding: 25
         },
         registerButton:{
             display: 'flex',
-            justifyContent: 'flex-end'
+            justifyContent: 'flex-end',
+            marginTop: 15
+        },
+        titleBack:{
+            marginTop:25,
+            textAlign: 'start'       
         }
     }))
 
@@ -44,7 +75,7 @@ const SignupPage: React.FC = () => {
                     <Grid container>
 
                         <Grid item lg={12}>
-                            <Typography>
+                            <Typography variant="h5" className={classes.title}>
                                 Crie sua conta
                             </Typography>
                         </Grid>
@@ -70,22 +101,6 @@ const SignupPage: React.FC = () => {
                         <Grid item lg={12}>
                             <TextField
                                 //value={values.email}
-                                name="name"
-                                //onChange={handleChange}
-                                margin="normal"
-                                label="Name" 
-                                variant="outlined"
-                                //helperText={getError('email')}
-                                //error={hasError('email')}
-                                autoFocus
-                                fullWidth
-                                required
-                            />  
-                        </Grid>
-
-                        <Grid item lg={12}>
-                            <TextField
-                                //value={values.email}
                                 name="password"
                                 //onChange={handleChange}
                                 margin="normal"
@@ -93,7 +108,6 @@ const SignupPage: React.FC = () => {
                                 variant="outlined"
                                 //helperText={getError('email')}
                                 //error={hasError('email')}
-                                autoFocus
                                 fullWidth
                                 required
                             />  
@@ -109,7 +123,6 @@ const SignupPage: React.FC = () => {
                                 variant="outlined"
                                 //helperText={getError('email')}
                                 //error={hasError('email')}
-                                autoFocus
                                 fullWidth
                                 required
                             />  
@@ -131,6 +144,24 @@ const SignupPage: React.FC = () => {
 
                     </Grid>
                 </form>
+            
+                <Grid className={classes.item}>
+
+                     <EqualizerRoundedIcon style={{ fontSize: 75, marginBottom: 10}}/>
+
+                    <Typography variant="h4"  style={{textAlign: 'center'}}>
+                        Gerencie projetos com excelência
+                    </Typography>
+
+                    <Grid lg={12}>
+                        <Typography className={classes.titleBack}>
+                            <Link href={LOGIN} onClick={handleRedirectLogin}>
+                                Voltar para Login
+                            </Link>
+                        </Typography>
+                    </Grid>
+            
+                </Grid>
             </Grid>
         </Grid>
     );
