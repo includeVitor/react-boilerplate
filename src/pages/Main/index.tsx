@@ -1,4 +1,4 @@
-import { AppBar, makeStyles, Typography, Badge, Toolbar, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core"
+import { AppBar, makeStyles, Typography, Badge, Toolbar, Drawer, Divider, List, Menu, MenuItem } from "@material-ui/core"
 import React, { useState } from "react"
 import { connect } from "react-redux"
 import IconButton from '@material-ui/core/IconButton';
@@ -6,13 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import clsx from 'clsx'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import MoreIcon from '@material-ui/icons/MoreVert';
 
 import { mainList } from './listItems'
 
@@ -21,7 +15,7 @@ const MainPage: React.FC = (props: any) => {
       
      
     const drawerWidth = 240;
-
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [open, setOpen] = useState(true);
 
     const handleDrawerOpen = () => {
@@ -32,9 +26,49 @@ const MainPage: React.FC = (props: any) => {
     };
 
 
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const menuId = 'primary-search-account-menu';
+
+    const isMenuOpen = Boolean(anchorEl);
+
+    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        alert('oi')
+    };
+
+
+    const renderMenu = (
+        <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleMenuClose}>Sair</MenuItem>
+        </Menu>
+    );
+
     const useStyles = makeStyles((theme) => ({
         root: {
             display: 'flex',
+            alignItems: 'start',
+            justifyContent: 'start',
+            width: '100%',
+            minHeight: '100vh',
         },
         appBar: {
             zIndex: theme.zIndex.drawer + 1,
@@ -55,6 +89,7 @@ const MainPage: React.FC = (props: any) => {
             paddingRight: 24, // keep right padding when drawer closed
         },
         drawerPaper: {
+            minHeight: '100vh',
             position: 'relative',
             whiteSpace: 'nowrap',
             width: drawerWidth,
@@ -99,26 +134,35 @@ const MainPage: React.FC = (props: any) => {
 
         <div className={classes.root}>
             <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-            <Toolbar className={classes.toolbar}>
-            <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-            >
-                <MenuIcon />
-            </IconButton>
-            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                <Toolbar className={classes.toolbar}>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         Dashboard
-            </Typography>
-            <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-                </Badge>
-            </IconButton>
-            </Toolbar>
-        </AppBar>
+                    </Typography>
+
+                    <IconButton
+                        edge="end"
+                        aria-label="account of current user"
+                        aria-controls={menuId}
+                        aria-haspopup="true"
+                        onClick={handleProfileMenuOpen}
+                        color="inherit"
+                        >
+                        <MoreIcon />
+                    </IconButton>
+
+                </Toolbar>
+            </AppBar>
+
+            {renderMenu}
 
             <Drawer
             variant="permanent"

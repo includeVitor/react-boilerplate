@@ -5,5 +5,5 @@ export const FORGOT:string = "/forgot"
 
 
 //Private Routes
-export const MAIN:string = "/Main"
+export const MAIN:string = "/Dashboard"
 
