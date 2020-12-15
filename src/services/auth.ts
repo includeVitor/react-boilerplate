@@ -35,31 +35,30 @@ async function loginUser(user : UserRequest, history : any){
 
     }catch(error){
 
-        if('response' in error &&
-            'data' in error.response){ 
-            
-            let data : any = error.response.data
-            var items: Error[] = []
-            
-            data.errors.forEach((e: string) => {                
-                items.push({description: e})
-            });
+        if(error.response !== undefined){
+            if('data' in error.response){
+                let data : any = error.response.data
+                var items: Error[] = []
+                
+                data.errors.forEach((e: string) => {                
+                    items.push({description: e})
+                });
 
-            const errors : Errors = ({
-                code :  error.response.status,
-                errors : items
-            })
+                const errors : Errors = ({
+                    code :  error.response.status,
+                    errors : items
+                })
 
-            store.dispatch(set_errors(errors))
+                store.dispatch(set_errors(errors))
 
-            const toast : Toast = {
-                message: errors.errors.map((e)=> ` - ${e.description}` ).join()
+                const toast : Toast = {
+                    message: errors.errors.map((e)=> ` - ${e.description}` ).join()
+                }
+
+                store.dispatch(ToastError(toast))
             }
-
-            store.dispatch(ToastError(toast))
-
         }else{
-
+            
             const toast : Toast = {
                 message: "Não foi possível acessar o sistema, tente novamente mais tarde"
             }
