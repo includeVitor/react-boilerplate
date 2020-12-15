@@ -85,15 +85,14 @@ async function registerUser(user: UserRequestRegister, history: any){
             store.dispatch(clear_errors())
 
             //route
-            history.push("/Main")
+            history.push(MAIN)
 
         }
 
 
     }catch(error){
-
-        if('response' in error &&
-            'data' in error.response){ 
+        
+        if(error.response !== undefined){
 
             let data : any = error.response.data
             var items: Error[] = []
