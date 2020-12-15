@@ -1,5 +1,7 @@
 import { Action } from "redux"
-import { Errors } from "../../types"
+import { Errors } from "../../../types"
+
+//Actions
 
 interface UiState{
     loading: boolean,
@@ -39,6 +41,8 @@ const initialState : UiState = {
     loading: true,
     errors: null
 }
+
+//Reduces
 
 const uiReducer = (
     state: UiState = initialState,

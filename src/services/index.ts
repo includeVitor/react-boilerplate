@@ -1,5 +1,5 @@
-import { authService } from "./auth"
+import { authService } from "./authService"
 
 export{
-    authService
+    authService,
 }

@@ -1,13 +1,13 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux'
+import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import authReducer from './ducks/auth'
-import uiReducer from './ducks/ui'
-import toastReducer from './ducks/toast'
+import authReducer from './modules/auth'
+import uiReducer from './modules/ui'
+import notifyReducer from './modules/notify'
 
 const rootReducer = combineReducers({
     auth : authReducer,
     ui : uiReducer,
-    toast: toastReducer
+    notify: notifyReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

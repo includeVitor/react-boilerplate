@@ -1,10 +1,12 @@
-import api from './api'
-import { UserRequest, Error, Errors, Toast, UserRequestRegister } from '../types'
-import { login, logout } from "../store/ducks/auth"
-import { clear_errors, set_errors } from "../store/ducks/ui"
-import { error as ToastError } from "../store/ducks/toast"
-import store from "../store"
-import {MAIN}  from "../route/CONSTANTS"
+import api from '../apiService'
+import { UserRequest, UserRequestRegister } from '../../types'
+import { login, logout } from "../../store/modules/auth"
+import { clear_errors, set_errors } from "../../store/modules/ui"
+import { error as ToastError } from "../../store/modules/notify"
+import store from "../../store"
+import {MAIN}  from "../../route/CONSTANTS"
+import { Error, Errors } from '../../store/modules/ui/types'
+import { Toast } from '../../store/modules/notify/types'
 
 export const authService = {
     loginUser,
@@ -16,7 +18,7 @@ async function loginUser(user : UserRequest, history : any){
 
     try{
 
-        let result = await api.post(`/login`,{email : user.email, password : user.password})
+        let result = await api.post(`/entrar`,{email : user.email, password : user.password})
         if(result.data.success){
 
             //auth 

@@ -1,6 +1,9 @@
 import { Action } from "redux"
 import { toast } from "react-toastify";
-import { Toast } from "../../types"
+import { Toast } from "./types"
+
+
+//Actions 
 
 interface ToastState{ 
     time?: number,
@@ -49,6 +52,9 @@ const initialState: ToastState = {
     time : 5000,
     message: ""
 }
+
+
+//Reduces
 
 const toastReducer = (
     state: ToastState = initialState,

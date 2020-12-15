@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode"
-import { login, logout } from "../store/ducks/auth"
-import api from "../services/api"
+import { login, logout } from "../store/modules/auth"
+import api from "../services/apiService"
 import store from "../store"
 
 

@@ -1,10 +1,12 @@
 import { Action } from 'redux';
-import { User } from '../../types'
+import { IUser } from './types'
+
+//Actions
 
 interface AuthState {
   isAuthenticated: boolean;
   token: string | null
-  user: User| null
+  user: IUser| null
 }
 
 const LOGIN = 'auth/login';
@@ -26,6 +28,9 @@ const initialState: AuthState = {
     token: null,
     user: null
 }
+
+
+//Reduces
 
 const authReducer = (
   state: AuthState = initialState,
