@@ -11,6 +11,9 @@ import Link from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
 import TouchAppIcon from '@material-ui/icons/TouchApp'
 import {FORGOT, SIGNUP} from "../route/CONSTANTS"
+import SmartDataPaper from '../components/SmartDataPaper'
+
+
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -92,26 +95,6 @@ const LoginPage: React.FC = (props : any) => {
             display: 'flex',           
             justifyContent: 'space-between'
         },
-        item: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignSelf: 'center',
-            width: '100%',
-            maxWidth: 480,
-            alignItems: 'center'
-        },
-        form: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignSelf: 'center',
-            width: '100%',
-            maxWidth: 480,
-            alignItems: 'center',
-            padding: 68,
-            borderRadius: 5,
-            border: '1px solid #dadce0',
-            backgroundColor: '#fff'
-        },
         forgot: {
             marginTop: 15,
             justifyContent: 'flex-start',
@@ -135,9 +118,9 @@ const LoginPage: React.FC = (props : any) => {
 
         <Grid className={classes.main}>
 
-            <Grid className={classes.content}>
+            <Grid className={classes.content} item>
                     
-                <Grid  className={classes.item}>
+                <SmartDataPaper>
 
                     <TouchAppIcon style={{ fontSize: 75, marginBottom: 10 }}/>
 
@@ -145,76 +128,78 @@ const LoginPage: React.FC = (props : any) => {
                         Entre na plataforma
                     </Typography>
             
-                </Grid>
+                </SmartDataPaper>
 
-                <form className={classes.form} noValidate onSubmit={handleSubmit}> 
+                <SmartDataPaper padding={68} border={true} background={true} >
+                    <form  noValidate onSubmit={handleSubmit}> 
 
-                    <Grid container>
-                        
-                        <Grid item lg={12}>
-                            <TextField
-                                type="email"
-                                value={values.email}
-                                name="email"
-                                onChange={handleChange}
-                                margin="normal"
-                                label="E-mail" 
-                                variant="outlined"
-                                autoComplete="email"
-                                helperText={getError('email')}
-                                error={hasError('email')}
-                                autoFocus
-                                fullWidth
-                                required
-                            />  
+                        <Grid container>
+                            
+                            <Grid item lg={12}>
+                                <TextField
+                                    type="email"
+                                    value={values.email}
+                                    name="email"
+                                    onChange={handleChange}
+                                    margin="normal"
+                                    label="E-mail" 
+                                    variant="outlined"
+                                    autoComplete="email"
+                                    helperText={getError('email')}
+                                    error={hasError('email')}
+                                    autoFocus
+                                    fullWidth
+                                    required
+                                />  
+                            </Grid>
+                            
+                            <Grid item lg={12}>
+                                <TextField
+                                    type="password"
+                                    value={values.password}
+                                    name="password"
+                                    onChange={handleChange}
+                                    label="Senha" 
+                                    variant="outlined"
+                                    helperText={getError('password')}
+                                    error={hasError('password')}
+                                    required
+                                    fullWidth
+                                />  
+                            </Grid>
+
+                            <Grid item lg={12} className={classes.forgot}>
+                                <Typography>
+                                    <Link href={FORGOT} onClick={handleRedirectForgot}>
+                                        Esqueci minha senha
+                                    </Link>
+                                </Typography>
+                            </Grid>
+
+                            <Grid item lg={6} className={classes.buttonRegister}>
+                                <Typography>
+                                    <Link href={SIGNUP} onClick={handleRedirectRegister}>
+                                        Registrar
+                                    </Link>
+                                </Typography>
+                            </Grid>
+
+                            <Grid item lg={6} className={classes.buttonSubmit}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    size="medium"
+                                    disabled={ableToSubmit(errors)}
+                                >
+                                    Entrar
+                                </Button>
+                            </Grid>
+
                         </Grid>
-                        
-                        <Grid item lg={12}>
-                            <TextField
-                                type="password"
-                                value={values.password}
-                                name="password"
-                                onChange={handleChange}
-                                label="Senha" 
-                                variant="outlined"
-                                helperText={getError('password')}
-                                error={hasError('password')}
-                                required
-                                fullWidth
-                            />  
-                        </Grid>
 
-                        <Grid item lg={12} className={classes.forgot}>
-                            <Typography>
-                                <Link href={FORGOT} onClick={handleRedirectForgot}>
-                                    Esqueci minha senha
-                                </Link>
-                            </Typography>
-                        </Grid>
-
-                        <Grid item lg={6} className={classes.buttonRegister}>
-                            <Typography>
-                                <Link href={SIGNUP} onClick={handleRedirectRegister}>
-                                    Registrar
-                                </Link>
-                            </Typography>
-                        </Grid>
-
-                        <Grid item lg={6} className={classes.buttonSubmit}>
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                color="primary"
-                                size="medium"
-                                disabled={ableToSubmit(errors)}
-                            >
-                                Entrar
-                            </Button>
-                        </Grid>
-
-                    </Grid>
-
-                </form>
+                    </form>
+                </SmartDataPaper>
                 
             </Grid>
         </Grid>
