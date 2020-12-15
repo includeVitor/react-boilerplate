@@ -11,6 +11,8 @@ import Link from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
 import TouchAppIcon from '@material-ui/icons/TouchApp'
 import {FORGOT, SIGNUP} from "../route/CONSTANTS"
+
+//SmartData Components
 import SmartDataPaper from '../components/SmartDataPaper'
 
 
@@ -124,7 +126,7 @@ const LoginPage: React.FC = (props : any) => {
 
                     <TouchAppIcon style={{ fontSize: 75, marginBottom: 10 }}/>
 
-                    <Typography variant="h3" component="h3">
+                    <Typography variant="h4">
                         Entre na plataforma
                     </Typography>
             

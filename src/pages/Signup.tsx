@@ -6,6 +6,9 @@ import { useHistory } from "react-router-dom";
 import { UserRequestError, UserRequestRegister } from "../types"
 import { authService } from "../services"
 
+//SmartData Components
+import SmartDataPaper from '../components/SmartDataPaper'
+
 const SignupPage: React.FC = () => {
 
 
@@ -88,27 +91,6 @@ const SignupPage: React.FC = () => {
             textAlign: 'center',
             fontWeight: 'bold'
         },
-        registerForm: {
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            maxWidth: 480,
-            padding: 25,
-            marginTop: 15,
-            borderRadius: 5,
-            alignItems: 'center',
-            border: '1px solid #dadce0',
-            backgroundColor: '#fff'
-        },
-        item: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignSelf: 'center',
-            width: '100%',
-            maxWidth: 480,
-            alignItems: 'center',
-            padding: 25
-        },
         registerButton:{
             display: 'flex',
             justifyContent: 'flex-end',
@@ -125,81 +107,86 @@ const SignupPage: React.FC = () => {
 
     return (  
         <Grid className={classes.main}>
+
             <Grid className={classes.content}>
-                <form className={classes.registerForm} noValidate onSubmit={handleSubmit}>
-                    <Grid container>
 
-                        <Grid item lg={12}>
-                            <Typography variant="h5" className={classes.title}>
-                                Crie sua conta
-                            </Typography>
-                        </Grid>
+                <SmartDataPaper padding={25} background={true} border={true}>
 
-                        <Grid item lg={12}>
-                            <TextField
-                                type="email"
-                                value={values.email}
-                                name="email"
-                                onChange={handleChange}
-                                margin="normal"
-                                label="E-mail" 
-                                variant="outlined"
-                                autoComplete="email"
-                                helperText={getError('email')}
-                                error={hasError('email')}
-                                autoFocus
-                                fullWidth
-                                required
-                            />  
-                        </Grid>
+                    <form noValidate onSubmit={handleSubmit}>
+                       
+                        <Grid container>
+                            <Grid item lg={12}>
+                                <Typography variant="h5" className={classes.title}>
+                                    Crie sua conta
+                                </Typography>
+                            </Grid>
 
-                        <Grid item lg={12}>
-                            <TextField
-                                type="password"
-                                value={values.password}
-                                name="password"
-                                onChange={handleChange}
-                                margin="normal"
-                                label="Sua senha" 
-                                variant="outlined"
-                                helperText={getError('password')}
-                                error={hasError('password')}
-                                fullWidth
-                                required
-                            />  
-                        </Grid>
+                            <Grid item lg={12}>
+                                <TextField
+                                    type="email"
+                                    value={values.email}
+                                    name="email"
+                                    onChange={handleChange}
+                                    margin="normal"
+                                    label="E-mail" 
+                                    variant="outlined"
+                                    autoComplete="email"
+                                    helperText={getError('email')}
+                                    error={hasError('email')}
+                                    autoFocus
+                                    fullWidth
+                                    required
+                                />  
+                            </Grid>
 
-                        <Grid item lg={12}>
-                            <TextField
-                                type="password"
-                                value={values.confirmPassword}
-                                name="confirmPassword"
-                                onChange={handleChange}
-                                margin="normal"
-                                label="Confirme sua senha" 
-                                variant="outlined"
-                                helperText={getError('confirmPassword')}
-                                error={hasError('confirmPassword')}
-                                fullWidth
-                                required
-                            />  
-                        </Grid>
+                            <Grid item lg={12}>
+                                <TextField
+                                    type="password"
+                                    value={values.password}
+                                    name="password"
+                                    onChange={handleChange}
+                                    margin="normal"
+                                    label="Sua senha" 
+                                    variant="outlined"
+                                    helperText={getError('password')}
+                                    error={hasError('password')}
+                                    fullWidth
+                                    required
+                                />  
+                            </Grid>
 
-                        <Grid item lg={12} className={classes.registerButton}>
-                            <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    size="medium"
-                                    disabled={ableToSubmit(errors)}
-                                >
-                                    Cadastrar
-                            </Button>
+                            <Grid item lg={12}>
+                                <TextField
+                                    type="password"
+                                    value={values.confirmPassword}
+                                    name="confirmPassword"
+                                    onChange={handleChange}
+                                    margin="normal"
+                                    label="Confirme sua senha" 
+                                    variant="outlined"
+                                    helperText={getError('confirmPassword')}
+                                    error={hasError('confirmPassword')}
+                                    fullWidth
+                                    required
+                                />  
+                            </Grid>
+
+                            <Grid item lg={12} className={classes.registerButton}>
+                                <Button
+                                        type="submit"
+                                        variant="contained"
+                                        color="primary"
+                                        size="medium"
+                                        disabled={ableToSubmit(errors)}
+                                    >
+                                        Cadastrar
+                                </Button>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </form>
+                    </form>
+                </SmartDataPaper>
             
-                <Grid className={classes.item}>
+                <SmartDataPaper>
 
                      <EqualizerRoundedIcon style={{ fontSize: 75, marginBottom: 10}}/>
 
@@ -215,7 +202,8 @@ const SignupPage: React.FC = () => {
                         </Typography>
                     </Grid>
             
-                </Grid>
+                </SmartDataPaper>
+
             </Grid>
         </Grid>
     );
