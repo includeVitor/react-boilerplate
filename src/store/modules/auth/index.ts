@@ -1,13 +1,7 @@
 import { Action } from 'redux';
-import { IUser } from './types'
+import { IUser, IAuthState } from './types'
 
 //Actions
-
-interface AuthState {
-  isAuthenticated: boolean;
-  token: string | null
-  user: IUser| null
-}
 
 const LOGIN = 'auth/login';
 const LOGOUT = 'auth/logout';
@@ -23,7 +17,7 @@ export const logout = (): LogoutAction => ({
   type: LOGOUT
 })
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
     isAuthenticated: false,
     token: null,
     user: null
@@ -33,7 +27,7 @@ const initialState: AuthState = {
 //Reduces
 
 const authReducer = (
-  state: AuthState = initialState,
+  state: IAuthState = initialState,
   action: LoginAction | LogoutAction
 ) => {
   switch (action.type) {

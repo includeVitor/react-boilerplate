@@ -1,11 +1,11 @@
 import { Action } from "redux"
-import { Errors } from "../../../types"
+import { IErrors } from "./types"
 
 //Actions
 
 interface UiState{
     loading: boolean,
-    errors: Errors | null
+    errors: IErrors | null
 }
 
 const SET_ERRORS = 'ui/set_errors'
@@ -15,7 +15,7 @@ const LOADING_UI = 'ui/loading_ui'
 
 interface SetErrorsAction extends Action<typeof SET_ERRORS> {
     payload: {
-      errors: Errors
+      errors: IErrors
     }
 }
   
@@ -24,7 +24,7 @@ type LoadingUIAction = Action<typeof LOADING_UI>
 
 
 
-export const set_errors = (errors : Errors) : SetErrorsAction => ({
+export const set_errors = (errors : IErrors) : SetErrorsAction => ({
     type: SET_ERRORS,
     payload : { errors: errors }
 })

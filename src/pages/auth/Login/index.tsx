@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 
 //Services, Types, Constants
 import { authService } from "../../../services"
-import { ILoginRequest, UserRequestError } from "../../../types"
+import { ILoginRequest, ILoginRequestError } from "../../../services/authService/types"
 import { FORGOT, SIGNUP } from "../../../route/CONSTANTS"
 
 //SmartData Components
@@ -25,7 +25,7 @@ const LoginPage: React.FC = (props : any) => {
         password: ""
     } as ILoginRequest)
  
-    const [errors, setErrors] = useState({} as UserRequestError)
+    const [errors, setErrors] = useState({} as ILoginRequestError)
 
     const hasError = (field: string) => !!errors[field]
 

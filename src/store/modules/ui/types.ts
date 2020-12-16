@@ -1,8 +1,8 @@
-export interface Error{
+export interface IError{
     description: string
 }
 
-export interface Errors{
+export interface IErrors{
     code: number,
-    errors: Error[]
+    errors: IError[]
 }

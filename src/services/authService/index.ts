@@ -1,11 +1,11 @@
 import api from '../apiService'
-import { ILoginRequest, IRegisterRequest } from '../../types'
+import { ILoginRequest, IRegisterRequest } from './types'
 import { login, logout } from "../../store/modules/auth"
 import { clear_errors, set_errors } from "../../store/modules/ui"
 import { error as ToastError } from "../../store/modules/notify"
 import store from "../../store"
 import {MAIN}  from "../../route/CONSTANTS"
-import { Error, Errors } from '../../store/modules/ui/types'
+import { IError, IErrors } from '../../store/modules/ui/types'
 import { Toast } from '../../store/modules/notify/types'
 
 export const authService = {
@@ -39,13 +39,13 @@ async function loginUser(user : ILoginRequest, history : any){
 
         if(error.response !== undefined){
             let data : any = error.response.data
-            var items: Error[] = []
+            var items: IError[] = []
             
             data.errors.forEach((e: string) => {                
                 items.push({description: e})
             });
 
-            const errors : Errors = ({
+            const errors : IErrors = ({
                 code :  error.response.status,
                 errors : items
             })
@@ -97,13 +97,13 @@ async function registerUser(user: IRegisterRequest, history: any){
         if(error.response !== undefined){
 
             let data : any = error.response.data
-            var items: Error[] = []
+            var items: IError[] = []
             
             data.errors.forEach((e: string) => {                
                 items.push({description: e})
             });
 
-            const errors : Errors = ({
+            const errors : IErrors = ({
                 code :  error.response.status,
                 errors : items
             })

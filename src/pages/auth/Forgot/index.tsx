@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import { LOGIN } from "../../../route/CONSTANTS"
 import { useHistory } from "react-router-dom"
-import { Forgot, UserRequestError } from "../../../types"
+import { ILoginRequestError } from "../../../services/authService/types"
 import { authService } from "../../../services"
 
 const ForgetPage: React.FC = () => {
@@ -13,7 +13,7 @@ const ForgetPage: React.FC = () => {
 
 
     const [email, setEmail] = useState()
-    const [errors, setErrors] = useState({} as UserRequestError)
+    const [errors, setErrors] = useState({} as ILoginRequestError)
 
     const handleRedirectLogin = (e : any) => {
         e.preventDefault()
