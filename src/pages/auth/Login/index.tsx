@@ -80,8 +80,7 @@ const LoginPage: React.FC = (props : any) => {
         history.push(SIGNUP)
     }
         
-    return (        
-            
+    return (           
         <>           
             <SmartDataPaper>
 

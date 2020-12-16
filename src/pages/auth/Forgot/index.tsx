@@ -7,10 +7,12 @@ import { ILoginRequestError } from "../../../services/authService/types"
 import { LOGIN } from "../../../route/CONSTANTS"
 
 //StyledComponents
-import { TitleRecovery, ForgotButton, TitleBack } from './styles'
+import { TitleRecovery, ForgotButton, TitleBack, TitleMessage, SecurityIcon } from './styles'
+import SmartDataPaper from "../../../components/SmartDataPaper"
 
 //Material UI
 import { Grid, TextField, Link } from "@material-ui/core"
+
 
 const ForgetPage: React.FC = () => {
     
@@ -51,55 +53,66 @@ const ForgetPage: React.FC = () => {
     const getError = (field: string) => errors[field]   
 
     return (  
-        <>
-            <form noValidate onSubmit={handleSubmit}>
-                <Grid container>    
-                    <Grid item lg={12}>
-                        <TitleRecovery variant="h5">
-                            Recuperar senha                          
-                        </TitleRecovery>
-                    </Grid>
+        <>  
+            <SmartDataPaper padding={68} border={true} background={true}>
+                <form noValidate onSubmit={handleSubmit}>
+                    <Grid container>    
+                        <Grid item lg={12}>
+                            <TitleRecovery variant="h5">
+                                Recuperar senha                          
+                            </TitleRecovery>
+                        </Grid>
 
-                    <Grid item lg={12}>
-                        <TextField
-                            type="email"
-                            value={email}
-                            name="email"
-                            onChange={handleChange}
-                            margin="normal"
-                            label="Digite seu e-mail" 
-                            variant="outlined"
-                            autoComplete="email"
-                            helperText={getError('email')}
-                            error={hasError('email')}
-                            autoFocus
-                            fullWidth
-                            required
-                        />  
-                    </Grid>
+                        <Grid item lg={12}>
+                            <TextField
+                                type="email"
+                                value={email}
+                                name="email"
+                                onChange={handleChange}
+                                margin="normal"
+                                label="Digite seu e-mail" 
+                                variant="outlined"
+                                autoComplete="email"
+                                helperText={getError('email')}
+                                error={hasError('email')}
+                                autoFocus
+                                fullWidth
+                                required
+                            />  
+                        </Grid>
 
-                    <Grid item lg={12}>
-                        <ForgotButton
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            size="medium"
-                            fullWidth
-                        >
-                            Recuperar
-                        </ForgotButton>
-                    </Grid>
+                        <Grid item lg={12}>
+                            <ForgotButton
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                size="medium"
+                                fullWidth
+                            >
+                                Recuperar
+                            </ForgotButton>
+                        </Grid>
 
-                    <Grid item lg={12}>
-                        <TitleBack>
-                            <Link href={LOGIN} onClick={handleRedirectLogin}>
-                                Voltar
-                            </Link>
-                        </TitleBack>
                     </Grid>
+                </form>
+            </SmartDataPaper>
+
+            <SmartDataPaper>
+
+                <SecurityIcon/>
+
+                <TitleMessage variant="h4" >
+                    Volte a ter o controle de seus projetos
+                </TitleMessage>
+
+                <Grid item lg={12}>
+                    <TitleBack>
+                        <Link href={LOGIN} onClick={handleRedirectLogin}>
+                            Voltar
+                        </Link>
+                    </TitleBack>
                 </Grid>
-            </form>
-
+            </SmartDataPaper>
         </>
     )
 }
