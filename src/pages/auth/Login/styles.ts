@@ -7,7 +7,7 @@ export const GridForgot = styled(Grid)`
     justify-content: flex-start;
     display: flex;
 
-`;
+`
 
 export const GridRegister = styled(Grid)`
 
@@ -15,7 +15,7 @@ export const GridRegister = styled(Grid)`
     justify-content: flex-start;
     display: flex;
 
-`;
+`
 
 export const GridSubmit = styled(Grid)`
 
@@ -23,7 +23,7 @@ export const GridSubmit = styled(Grid)`
     justify-content: flex-end;
     display: flex;
 
-`;
+`
 
 
 
