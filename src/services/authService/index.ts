@@ -1,5 +1,5 @@
 import api from '../apiService'
-import { UserRequest, UserRequestRegister } from '../../types'
+import { ILoginRequest, IRegisterRequest } from '../../types'
 import { login, logout } from "../../store/modules/auth"
 import { clear_errors, set_errors } from "../../store/modules/ui"
 import { error as ToastError } from "../../store/modules/notify"
@@ -14,7 +14,7 @@ export const authService = {
     logoutUser
 }
 
-async function loginUser(user : UserRequest, history : any){
+async function loginUser(user : ILoginRequest, history : any){
 
     try{
 
@@ -69,7 +69,7 @@ async function loginUser(user : UserRequest, history : any){
     }    
 }
 
-async function registerUser(user: UserRequestRegister, history: any){
+async function registerUser(user: IRegisterRequest, history: any){
     
     try{
 

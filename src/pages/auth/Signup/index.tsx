@@ -2,12 +2,12 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom";
 
 //Services, Types, Constants
-import { authService } from "../../services"
-import { UserRequestError, UserRequestRegister } from "../../types"
-import {LOGIN} from "../../route/CONSTANTS"
+import { authService } from "../../../services"
+import { UserRequestError, IRegisterRequest } from "../../../types"
+import {LOGIN} from "../../../route/CONSTANTS"
 
 //SmartData Components
-import SmartDataPaper from '../../components/SmartDataPaper'
+import SmartDataPaper from '../../../components/SmartDataPaper'
 
 //Styled Components
 import { Container, Content, EqualizerRoundedIcon, SignupTitle, GridRegister, TitleBack } from './styles'
@@ -23,7 +23,7 @@ const SignupPage: React.FC = () => {
 
     const [errors, setErrors] = useState({} as UserRequestError)
 
-    const [values, setValues] = useState({email: "", password: "", confirmPassword: ""} as UserRequestRegister)
+    const [values, setValues] = useState({email: "", password: "", confirmPassword: ""} as IRegisterRequest)
 
     const handleSubmit = (e: any) => {
        e.preventDefault() 
@@ -43,7 +43,7 @@ const SignupPage: React.FC = () => {
 
        setErrors(errorMessages)
 
-        const userRegisterData : UserRequestRegister ={
+        const userRegisterData : IRegisterRequest ={
             email: values.email,
             password: values.password,
             confirmPassword: values.confirmPassword

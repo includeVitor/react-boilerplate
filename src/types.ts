@@ -1,5 +1,25 @@
 import {RouteProps } from "react-router-dom";
 
+//Global types
+export interface ILoginRequest{
+    email:string,
+    password:string
+}
+
+export interface IRegisterRequest{
+    email:string,
+    password:string,
+    confirmPassword: string
+}
+
+export type UserRequestError = {
+    [index: string] :string
+}
+
+
+
+
+
 export interface Error{
     description: string
 }
@@ -7,15 +27,6 @@ export interface Error{
 export interface Errors{
     code: number,
     errors: Error[]
-}
-
-export interface UserRequest{
-    email:string,
-    password:string
-}
-
-export type UserRequestError = {
-    [index: string] :string
 }
 
 export interface AppRouteProps extends RouteProps{
@@ -28,8 +39,3 @@ export interface Forgot{
     email: string
 }
 
-export interface UserRequestRegister{
-    email:string,
-    password:string,
-    confirmPassword: string
-}

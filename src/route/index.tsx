@@ -6,10 +6,10 @@ import PublicRoute from './PublicRoute'
 
 import {LOGIN, SIGNUP, FORGOT, MAIN} from "./CONSTANTS"
 
-import Main from "../pages/Main"
-import Login from "../pages/Login"
-import Signup from "../pages/Signup"
-import Forgot from "../pages/Forgot"
+import Main from "../pages/dashboard"
+import Login from "../pages/auth/Login"
+import Signup from "../pages/auth/Signup"
+import Forgot from "../pages/auth/Forgot"
 
 
 const Routes: React.FC = () => {

@@ -2,10 +2,10 @@ import React, { useState } from "react"
 import { Grid, Typography, TextField, Button, Link } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles'
 
-import {LOGIN} from "../route/CONSTANTS"
+import { LOGIN } from "../../../route/CONSTANTS"
 import { useHistory } from "react-router-dom"
-import { Forgot, UserRequestError } from "../types"
-import { authService } from "../services"
+import { Forgot, UserRequestError } from "../../../types"
+import { authService } from "../../../services"
 
 const ForgetPage: React.FC = () => {
     

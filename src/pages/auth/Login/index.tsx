@@ -2,12 +2,12 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 
 //Services, Types, Constants
-import { authService } from "../../services"
-import { UserRequest, UserRequestError } from "../../types"
-import { FORGOT, SIGNUP } from "../../route/CONSTANTS"
+import { authService } from "../../../services"
+import { ILoginRequest, UserRequestError } from "../../../types"
+import { FORGOT, SIGNUP } from "../../../route/CONSTANTS"
 
 //SmartData Components
-import SmartDataPaper from '../../components/SmartDataPaper'
+import SmartDataPaper from '../../../components/SmartDataPaper'
 
 //StyledComponents
 import { Container, Content, GridForgot, GridRegister, GridSubmit } from './styles'
@@ -23,7 +23,7 @@ const LoginPage: React.FC = (props : any) => {
     const [values, setValues] = useState({
         email: "",
         password: ""
-    } as UserRequest)
+    } as ILoginRequest)
  
     const [errors, setErrors] = useState({} as UserRequestError)
 
@@ -61,7 +61,7 @@ const LoginPage: React.FC = (props : any) => {
 
         setErrors(errorMessages)
 
-        const userData : UserRequest ={
+        const userData : ILoginRequest ={
             email: values.email,
             password: values.password
         }
