@@ -7,8 +7,3 @@ export interface AppRouteProps extends RouteProps{
     authenticated: boolean,
     rest?: any
 }
-
-export interface Forgot{
-    email: string
-}
-
