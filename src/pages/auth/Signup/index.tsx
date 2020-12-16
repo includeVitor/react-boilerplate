@@ -16,7 +16,7 @@ import { EqualizerRoundedIcon, SignupTitle, GridRegister, TitleBack } from './st
 import { Grid, Typography, TextField, Button, Link } from "@material-ui/core";
 
 //Utils
-import { _handleRedirect } from "../../../util/formFunctions"
+import { _handleRedirect, _defaultErrorMessages, _getError, _hasError } from "../../../util/pageUtils"
 
 const SignupPage: React.FC = () => {
 
@@ -35,15 +35,7 @@ const SignupPage: React.FC = () => {
         return
       }
 
-       // client side validation
-       const form = e.target
-       const formData = new FormData(form)
-       const errorMessages = Array.from(formData.keys()).reduce((acc: any, key: any) => {
-           acc[key] = form.elements[key].validationMessage
-           return acc
-       },{})
-
-       setErrors(errorMessages)
+       setErrors(_defaultErrorMessages(e))
 
         const userRegisterData : IRegisterRequest ={
             email: values.email,
@@ -72,10 +64,6 @@ const SignupPage: React.FC = () => {
             return true
     }
 
-    const hasError = (field: string) => !!errors[field]
-
-    const getError = (field: string) => errors[field]  
-
     return (
 
         <>
@@ -100,8 +88,8 @@ const SignupPage: React.FC = () => {
                                 label="E-mail" 
                                 variant="outlined"
                                 autoComplete="email"
-                                helperText={getError('email')}
-                                error={hasError('email')}
+                                helperText={_getError('email', errors)}
+                                error={_hasError('email', errors)}
                                 autoFocus
                                 fullWidth
                                 required
@@ -117,8 +105,8 @@ const SignupPage: React.FC = () => {
                                 margin="normal"
                                 label="Sua senha" 
                                 variant="outlined"
-                                helperText={getError('password')}
-                                error={hasError('password')}
+                                helperText={_getError('password', errors)}
+                                error={_hasError('password', errors)}
                                 fullWidth
                                 required
                             />  
@@ -133,8 +121,8 @@ const SignupPage: React.FC = () => {
                                 margin="normal"
                                 label="Confirme sua senha" 
                                 variant="outlined"
-                                helperText={getError('confirmPassword')}
-                                error={hasError('confirmPassword')}
+                                helperText={_getError('confirmPassword', errors)}
+                                error={_hasError('confirmPassword', errors)}
                                 fullWidth
                                 required
                             />  

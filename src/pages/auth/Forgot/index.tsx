@@ -14,7 +14,7 @@ import SmartDataPaper from "../../../components/SmartDataPaper"
 import { Grid, TextField, Link } from "@material-ui/core"
 
 //Utils
-import { _handleRedirect } from "../../../util/formFunctions"
+import { _handleRedirect, _defaultErrorMessages, _hasError, _getError } from "../../../util/pageUtils"
 
 const ForgetPage: React.FC = () => {
     
@@ -24,21 +24,10 @@ const ForgetPage: React.FC = () => {
     const [email, setEmail] = useState()
     const [errors, setErrors] = useState({} as ILoginRequestError)
 
-    const handleRedirectLogin = (e : any) => {
-        e.preventDefault()
-        history.push(PublicRoutes.Login)
-    }
-
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        const form = e.target
-        const formData = new FormData(form)
-        const errorMessages = Array.from(formData.keys()).reduce((acc: any, key: any) => {
-            acc[key] = form.elements[key].validationMessage
-            return acc
-        },{})
 
-        setErrors(errorMessages)
+        setErrors(_defaultErrorMessages(e))
 
         //forgot action
         
@@ -49,10 +38,6 @@ const ForgetPage: React.FC = () => {
         setEmail(input.value)
         setErrors({...errors, [input.name] : input.validationMessage})
     }
-
-    const hasError = (field: string) => !!errors[field]
-
-    const getError = (field: string) => errors[field]   
 
     return (  
         <>  
@@ -75,8 +60,8 @@ const ForgetPage: React.FC = () => {
                                 label="Digite seu e-mail" 
                                 variant="outlined"
                                 autoComplete="email"
-                                helperText={getError('email')}
-                                error={hasError('email')}
+                                helperText={_getError('email', errors)}
+                                error={_hasError('email', errors)}
                                 autoFocus
                                 fullWidth
                                 required

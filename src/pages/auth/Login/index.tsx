@@ -17,7 +17,7 @@ import { Button, TextField, Grid, Typography, Link } from '@material-ui/core'
 import {TouchApp as TouchAppIcon } from '@material-ui/icons'
 
 //Utils
-import { _handleRedirect } from "../../../util/formFunctions"
+import { _handleRedirect, _defaultErrorMessages, _hasError, _getError } from "../../../util/pageUtils"
 
 
 const LoginPage: React.FC = (props : any) => { 
@@ -30,10 +30,6 @@ const LoginPage: React.FC = (props : any) => {
     } as ILoginRequest)
  
     const [errors, setErrors] = useState({} as ILoginRequestError)
-
-    const hasError = (field : string) => !!errors[field]
-
-    const getError = (field : string) => errors[field]   
 
     function ableToSubmit (value : any) {
 
@@ -55,15 +51,7 @@ const LoginPage: React.FC = (props : any) => {
     const handleSubmit = (e : any) => {
         e.preventDefault()
 
-        // client side validation
-        const form = e.target
-        const formData = new FormData(form)
-        const errorMessages = Array.from(formData.keys()).reduce((acc: any, key: any) => {
-            acc[key] = form.elements[key].validationMessage
-            return acc
-        },{})
-
-        setErrors(errorMessages)
+        setErrors(_defaultErrorMessages(e))
 
         const userData : ILoginRequest ={
             email: values.email,
@@ -102,8 +90,8 @@ const LoginPage: React.FC = (props : any) => {
                                 label="E-mail" 
                                 variant="outlined"
                                 autoComplete="email"
-                                helperText={getError('email')}
-                                error={hasError('email')}
+                                helperText={_getError('email', errors)}
+                                error={_hasError('email', errors)}
                                 autoFocus
                                 fullWidth
                                 required
@@ -118,8 +106,8 @@ const LoginPage: React.FC = (props : any) => {
                                 onChange={handleChange}
                                 label="Senha" 
                                 variant="outlined"
-                                helperText={getError('password')}
-                                error={hasError('password')}
+                                helperText={_getError('password', errors)}
+                                error={_hasError('password', errors)}
                                 required
                                 fullWidth
                             />  
