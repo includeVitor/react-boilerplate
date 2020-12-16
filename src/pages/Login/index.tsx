@@ -1,22 +1,21 @@
 import React, { useState } from "react"
-import { authService } from "../../services"
-import { UserRequest, UserRequestError } from "../../types"
 import { useHistory } from "react-router-dom"
 
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
-import TouchAppIcon from '@material-ui/icons/TouchApp'
-import {FORGOT, SIGNUP} from "../../route/CONSTANTS"
+//Services, Types, Constants
+import { authService } from "../../services"
+import { UserRequest, UserRequestError } from "../../types"
+import { FORGOT, SIGNUP } from "../../route/CONSTANTS"
+
+//Material UI
+import { Button, TextField, Grid, Typography, Link } from '@material-ui/core'
+import {TouchApp as TouchAppIcon } from '@material-ui/icons'
 
 //SmartData Components
 import SmartDataPaper from '../../components/SmartDataPaper'
 
 //StyledComponents
 import { Container, Content, GridForgot, GridRegister, GridSubmit } from './styles'
-import { makeStyles } from '@material-ui/core/styles'
+
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -81,7 +80,7 @@ const LoginPage: React.FC = (props : any) => {
         e.preventDefault()
         history.push(SIGNUP)
     }
-    
+        
     return (        
 
             <Container>
@@ -170,8 +169,8 @@ const LoginPage: React.FC = (props : any) => {
                     </SmartDataPaper>
                     
                 </Content>
-
             </Container>
+        
     )
 
 }

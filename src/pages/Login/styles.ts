@@ -25,7 +25,7 @@ export const Content = styled.div`
 
 export const GridForgot = styled(Grid)`
 
-    margin-top: 15px;
+    padding-top:15px;
     justify-content: flex-start;
     display: flex;
 
@@ -33,7 +33,7 @@ export const GridForgot = styled(Grid)`
 
 export const GridRegister = styled(Grid)`
 
-    margin-top: 40px;
+    padding-top: 40px;
     justify-content: flex-start;
     display: flex;
 
@@ -41,7 +41,7 @@ export const GridRegister = styled(Grid)`
 
 export const GridSubmit = styled(Grid)`
 
-    margin-top: 40px;
+    padding-top: 40px;
     justify-content: flex-end;
     display: flex;
 
