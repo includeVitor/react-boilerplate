@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export interface SmartDataCardProps{
+export interface ISmartDataCardProps{
     maxWidth?: number,
     border?: boolean,
     background?: boolean,
@@ -8,7 +8,7 @@ export interface SmartDataCardProps{
 }
 
 
-export const Paper = styled.div<SmartDataCardProps>`
+export const Paper = styled.div<ISmartDataCardProps>`
 
     display: flex;
     flex-direction: column;

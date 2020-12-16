@@ -1,13 +1,13 @@
 import { Grid, makeStyles, Typography, TextField, Button, Link } from "@material-ui/core";
 import React, { useState } from "react"
 import EqualizerRoundedIcon from '@material-ui/icons/EqualizerRounded';
-import {LOGIN} from "../route/CONSTANTS"
+import {LOGIN} from "../../route/CONSTANTS"
 import { useHistory } from "react-router-dom";
-import { UserRequestError, UserRequestRegister } from "../types"
-import { authService } from "../services"
+import { UserRequestError, UserRequestRegister } from "../../types"
+import { authService } from "../../services"
 
 //SmartData Components
-import SmartDataPaper from '../components/SmartDataPaper'
+import SmartDataPaper from '../../components/SmartDataPaper'
 
 const SignupPage: React.FC = () => {
 
