@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { IUser, IAuthState } from './types'
+import { IAuthState } from './types'
 
 //Actions
 

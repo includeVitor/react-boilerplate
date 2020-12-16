@@ -3,19 +3,6 @@ import { Typography } from "@material-ui/core"
 import { Button } from "@material-ui/core"
 
 
-export const Container = styled.div`
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1 1 0%;
-    width: 100%;
-    max-width: 450px;
-    padding: 32px;
-    justify-content: center;
-
-`
-
 export const TitleRecovery = styled(Typography)`
 
     text-align: center;

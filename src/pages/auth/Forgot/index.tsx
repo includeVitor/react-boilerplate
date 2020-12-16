@@ -7,7 +7,7 @@ import { ILoginRequestError } from "../../../services/authService/types"
 import { LOGIN } from "../../../route/CONSTANTS"
 
 //StyledComponents
-import { Container, TitleRecovery, ForgotButton, TitleBack } from './styles'
+import { TitleRecovery, ForgotButton, TitleBack } from './styles'
 
 //Material UI
 import { Grid, TextField, Link } from "@material-ui/core"
@@ -51,9 +51,7 @@ const ForgetPage: React.FC = () => {
     const getError = (field: string) => errors[field]   
 
     return (  
-
-        <Container>
-
+        <>
             <form noValidate onSubmit={handleSubmit}>
                 <Grid container>    
                     <Grid item lg={12}>
@@ -102,8 +100,8 @@ const ForgetPage: React.FC = () => {
                 </Grid>
             </form>
 
-        </Container>
-    );
+        </>
+    )
 }
  
-export default ForgetPage;
+export default ForgetPage
