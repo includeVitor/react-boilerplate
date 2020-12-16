@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 //Services, Types, Constants
 import { authService } from "../../../services"
 import { ILoginRequestError } from "../../../services/authService/types"
-import { LOGIN } from "../../../route/CONSTANTS"
+import { PublicRoutes } from "../../../route/types"
 
 //StyledComponents
 import { TitleRecovery, ForgotButton, TitleBack, TitleMessage, SecurityIcon } from './styles'
@@ -13,6 +13,8 @@ import SmartDataPaper from "../../../components/SmartDataPaper"
 //Material UI
 import { Grid, TextField, Link } from "@material-ui/core"
 
+//Utils
+import { _handleRedirect } from "../../../util/formFunctions"
 
 const ForgetPage: React.FC = () => {
     
@@ -24,7 +26,7 @@ const ForgetPage: React.FC = () => {
 
     const handleRedirectLogin = (e : any) => {
         e.preventDefault()
-        history.push(LOGIN)
+        history.push(PublicRoutes.Login)
     }
 
     const handleSubmit = (e: any) => {
@@ -107,7 +109,7 @@ const ForgetPage: React.FC = () => {
 
                 <Grid item lg={12}>
                     <TitleBack>
-                        <Link href={LOGIN} onClick={handleRedirectLogin}>
+                        <Link href={PublicRoutes.Login} onClick={(e : any) => _handleRedirect(e, PublicRoutes.Login, history)}>
                             Voltar
                         </Link>
                     </TitleBack>

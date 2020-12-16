@@ -4,7 +4,7 @@ import { login, logout } from "../../store/modules/auth"
 import { clear_errors, set_errors } from "../../store/modules/ui"
 import { error as ToastError } from "../../store/modules/notify"
 import store from "../../store"
-import {MAIN}  from "../../route/CONSTANTS"
+import { PrivateRoutes }  from "../../route/types"
 import { IError, IErrors } from '../../store/modules/ui/types'
 import { Toast } from '../../store/modules/notify/types'
 
@@ -31,7 +31,7 @@ async function loginUser(user : ILoginRequest, history : any){
             store.dispatch(clear_errors())
 
             //route
-            history.push(MAIN)
+            history.push( PrivateRoutes.App )
             
         }
 
@@ -87,7 +87,7 @@ async function registerUser(user: IRegisterRequest, history: any){
             store.dispatch(clear_errors())
 
             //route
-            history.push(MAIN)
+            history.push( PrivateRoutes.App )
 
         }
 

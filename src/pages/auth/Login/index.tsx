@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 //Services, Types, Constants
 import { authService } from "../../../services"
 import { ILoginRequest, ILoginRequestError } from "../../../services/authService/types"
-import { FORGOT, SIGNUP } from "../../../route/CONSTANTS"
+import { PublicRoutes } from "../../../route/types"
 
 //SmartData Components
 import SmartDataPaper from '../../../components/SmartDataPaper'
@@ -15,6 +15,10 @@ import { GridForgot, GridRegister, GridSubmit } from './styles'
 //Material UI
 import { Button, TextField, Grid, Typography, Link } from '@material-ui/core'
 import {TouchApp as TouchAppIcon } from '@material-ui/icons'
+
+//Utils
+import { _handleRedirect } from "../../../util/formFunctions"
+
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -27,9 +31,9 @@ const LoginPage: React.FC = (props : any) => {
  
     const [errors, setErrors] = useState({} as ILoginRequestError)
 
-    const hasError = (field: string) => !!errors[field]
+    const hasError = (field : string) => !!errors[field]
 
-    const getError = (field: string) => errors[field]   
+    const getError = (field : string) => errors[field]   
 
     function ableToSubmit (value : any) {
 
@@ -39,7 +43,7 @@ const LoginPage: React.FC = (props : any) => {
             return true
     }
 
-    const handleChange = (e: any) => {
+    const handleChange = (e : any) => {
         const input = e.target
         setValues(values => ({
             ...values,
@@ -48,7 +52,7 @@ const LoginPage: React.FC = (props : any) => {
         setErrors({ ...errors, [input.name]: input.validationMessage})
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e : any) => {
         e.preventDefault()
 
         // client side validation
@@ -68,16 +72,6 @@ const LoginPage: React.FC = (props : any) => {
         
         //authentication
         authService.loginUser(userData, history)    
-    }
-
-    const handleRedirectForgot = (e :any) => {
-        e.preventDefault()
-        history.push(FORGOT)
-    }
-
-    const handleRedirectRegister = (e: any) => {
-        e.preventDefault()
-        history.push(SIGNUP)
     }
         
     return (           
@@ -133,7 +127,7 @@ const LoginPage: React.FC = (props : any) => {
 
                         <GridForgot item lg={12}>
                             <Typography>
-                                <Link href={FORGOT} onClick={handleRedirectForgot}>
+                                <Link href={PublicRoutes.Forgot} onClick={(e : any) => _handleRedirect(e, PublicRoutes.Forgot, history)}>
                                     Esqueci minha senha
                                 </Link>
                             </Typography>
@@ -141,7 +135,7 @@ const LoginPage: React.FC = (props : any) => {
 
                         <GridRegister item lg={6}>
                             <Typography>
-                                <Link href={SIGNUP} onClick={handleRedirectRegister}>
+                                <Link href={PublicRoutes.Signup} onClick={(e : any) => _handleRedirect(e,PublicRoutes.Signup, history)}>
                                     Registrar
                                 </Link>
                             </Typography>

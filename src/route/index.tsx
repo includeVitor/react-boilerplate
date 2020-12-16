@@ -4,9 +4,9 @@ import { Switch, BrowserRouter as Router } from "react-router-dom"
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 
-import { LOGIN, SIGNUP, FORGOT, MAIN } from "./CONSTANTS"
+import { PrivateRoutes, PublicRoutes } from "./types"
 
-import Main from "../pages/app"
+import App from "../pages/App"
 import Login from "../pages/auth/Login"
 import Signup from "../pages/auth/Signup"
 import Forgot from "../pages/auth/Forgot"
@@ -18,13 +18,13 @@ const Routes: React.FC = () => {
             <Switch>
                 
                 {/* Private Routes */}
-                <PrivateRoute exact path={MAIN} component={Main} />
+                <PrivateRoute exact path={PrivateRoutes.App} component={App} />
 
 
                 {/* Public Routes */}
-                <PublicRoute exact path={LOGIN} component={Login} />
-                <PublicRoute exact path={SIGNUP} component={Signup} />
-                <PublicRoute exact path={FORGOT} component={Forgot} />
+                <PublicRoute exact path={PublicRoutes.Login} component={Login} />
+                <PublicRoute exact path={PublicRoutes.Signup} component={Signup} />
+                <PublicRoute exact path={PublicRoutes.Forgot} component={Forgot} />
 
             </Switch>
         </Router>

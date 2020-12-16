@@ -4,7 +4,7 @@ import { Redirect, Route } from "react-router-dom"
 
 //Constants, Types
 import { AppRouteProps } from "../../types"
-import { LOGIN } from '../CONSTANTS'
+import { PublicRoutes } from '../types'
 
 //Layout
 import Layout from "../../pages/_layouts/app"
@@ -14,7 +14,7 @@ const PrivateRoute: React.FC<AppRouteProps> = ({component: Component, authentica
     return (  
         <Route
             {...rest}
-            render={ (props) => authenticated ? <Layout><Component {...props} /></Layout> : <Redirect to={LOGIN} />}
+            render={ (props) => authenticated ? <Layout><Component {...props} /></Layout> : <Redirect to={PublicRoutes.Login} />}
         />
     )
 }

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 //Services, Types, Constants
 import { authService } from "../../../services"
 import { ILoginRequestError, IRegisterRequest } from "../../../services/authService/types"
-import {LOGIN} from "../../../route/CONSTANTS"
+import { PublicRoutes } from "../../../route/types"
 
 //SmartData Components
 import SmartDataPaper from '../../../components/SmartDataPaper'
@@ -15,6 +15,8 @@ import { EqualizerRoundedIcon, SignupTitle, GridRegister, TitleBack } from './st
 //Material UI
 import { Grid, Typography, TextField, Button, Link } from "@material-ui/core";
 
+//Utils
+import { _handleRedirect } from "../../../util/formFunctions"
 
 const SignupPage: React.FC = () => {
 
@@ -60,11 +62,6 @@ const SignupPage: React.FC = () => {
             [input.name]: input.value
         }));
         setErrors({ ...errors, [input.name]: input.validationMessage})
-    }
-
-    const handleRedirectLogin = (e: any) => {
-        e.preventDefault()
-        history.push(LOGIN)
     }
 
     function ableToSubmit (value : any) {
@@ -170,7 +167,7 @@ const SignupPage: React.FC = () => {
 
                 <Grid item lg={12}>
                     <TitleBack>
-                        <Link href={LOGIN} onClick={handleRedirectLogin}>
+                        <Link href={PublicRoutes.Login} onClick={(e : any) => _handleRedirect(e, PublicRoutes.Login, history)}>
                             Voltar para Login
                         </Link>
                     </TitleBack>
