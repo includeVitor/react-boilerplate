@@ -1,10 +1,10 @@
 import React from "react"
 import { Container, Content } from "./styles"
 
-const AuthLayout: React.FC = ({children}) => {
+const AuthLayout: React.FC = ({ children }) => {
     return ( 
         <Container>
-            <Content>{children}</Content>
+            <Content>{ children }</Content>
         </Container>
     )
 }

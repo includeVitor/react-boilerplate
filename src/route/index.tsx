@@ -4,9 +4,9 @@ import { Switch, BrowserRouter as Router } from "react-router-dom"
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 
-import {LOGIN, SIGNUP, FORGOT, MAIN} from "./CONSTANTS"
+import { LOGIN, SIGNUP, FORGOT, MAIN } from "./CONSTANTS"
 
-import Main from "../pages/dashboard"
+import Main from "../pages/app"
 import Login from "../pages/auth/Login"
 import Signup from "../pages/auth/Signup"
 import Forgot from "../pages/auth/Forgot"
