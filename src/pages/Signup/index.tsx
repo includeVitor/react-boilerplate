@@ -1,13 +1,20 @@
-import { Grid, makeStyles, Typography, TextField, Button, Link } from "@material-ui/core";
 import React, { useState } from "react"
-import EqualizerRoundedIcon from '@material-ui/icons/EqualizerRounded';
-import {LOGIN} from "../../route/CONSTANTS"
 import { useHistory } from "react-router-dom";
-import { UserRequestError, UserRequestRegister } from "../../types"
+
+//Services, Types, Constants
 import { authService } from "../../services"
+import { UserRequestError, UserRequestRegister } from "../../types"
+import {LOGIN} from "../../route/CONSTANTS"
 
 //SmartData Components
 import SmartDataPaper from '../../components/SmartDataPaper'
+
+//Styled Components
+import { Container, Content, EqualizerRoundedIcon, SignupTitle, GridRegister, TitleBack } from './styles'
+
+//Material UI
+import { Grid, Typography, TextField, Button, Link } from "@material-ui/core";
+
 
 const SignupPage: React.FC = () => {
 
@@ -72,140 +79,111 @@ const SignupPage: React.FC = () => {
 
     const getError = (field: string) => errors[field]  
 
-    const useStyles = makeStyles((theme) => ({
-        main:{
-            display: 'flex',
-            flexDirection: 'column',
-            flex: '1 1 0%',
-            width: '100%',
-            maxWidth: 1000,
-            padding: 32,
-            justifyContent: 'center'
-        },
-        content: {
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-between'
-        },
-        title: {
-            textAlign: 'center',
-            fontWeight: 'bold'
-        },
-        registerButton:{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginTop: 15
-        },
-        titleBack:{
-            marginTop:25,
-            textAlign: 'start'       
-        }
-    }))
+    return (
 
-    const classes = useStyles()
+            <Container>
 
+                <Content>
 
-    return (  
-        <Grid className={classes.main}>
+                    <SmartDataPaper padding={25} background={true} border={true}>
 
-            <Grid className={classes.content}>
+                        <form noValidate onSubmit={handleSubmit}>
+                        
+                            <Grid container>
+                                <Grid item lg={12}>
+                                    <SignupTitle variant="h5">
+                                        Crie sua conta
+                                    </SignupTitle>
+                                </Grid>
 
-                <SmartDataPaper padding={25} background={true} border={true}>
+                                <Grid item lg={12}>
+                                    <TextField
+                                        type="email"
+                                        value={values.email}
+                                        name="email"
+                                        onChange={handleChange}
+                                        margin="normal"
+                                        label="E-mail" 
+                                        variant="outlined"
+                                        autoComplete="email"
+                                        helperText={getError('email')}
+                                        error={hasError('email')}
+                                        autoFocus
+                                        fullWidth
+                                        required
+                                    />  
+                                </Grid>
 
-                    <form noValidate onSubmit={handleSubmit}>
-                       
-                        <Grid container>
-                            <Grid item lg={12}>
-                                <Typography variant="h5" className={classes.title}>
-                                    Crie sua conta
-                                </Typography>
+                                <Grid item lg={12}>
+                                    <TextField
+                                        type="password"
+                                        value={values.password}
+                                        name="password"
+                                        onChange={handleChange}
+                                        margin="normal"
+                                        label="Sua senha" 
+                                        variant="outlined"
+                                        helperText={getError('password')}
+                                        error={hasError('password')}
+                                        fullWidth
+                                        required
+                                    />  
+                                </Grid>
+
+                                <Grid item lg={12}>
+                                    <TextField
+                                        type="password"
+                                        value={values.confirmPassword}
+                                        name="confirmPassword"
+                                        onChange={handleChange}
+                                        margin="normal"
+                                        label="Confirme sua senha" 
+                                        variant="outlined"
+                                        helperText={getError('confirmPassword')}
+                                        error={hasError('confirmPassword')}
+                                        fullWidth
+                                        required
+                                    />  
+                                </Grid>
+
+                                <GridRegister item lg={12}>
+                                    <Button
+                                            type="submit"
+                                            variant="contained"
+                                            color="primary"
+                                            size="medium"
+                                            disabled={ableToSubmit(errors)}
+                                        >
+                                            Cadastrar
+                                    </Button>
+                                </GridRegister>
                             </Grid>
 
-                            <Grid item lg={12}>
-                                <TextField
-                                    type="email"
-                                    value={values.email}
-                                    name="email"
-                                    onChange={handleChange}
-                                    margin="normal"
-                                    label="E-mail" 
-                                    variant="outlined"
-                                    autoComplete="email"
-                                    helperText={getError('email')}
-                                    error={hasError('email')}
-                                    autoFocus
-                                    fullWidth
-                                    required
-                                />  
-                            </Grid>
+                        </form>
 
-                            <Grid item lg={12}>
-                                <TextField
-                                    type="password"
-                                    value={values.password}
-                                    name="password"
-                                    onChange={handleChange}
-                                    margin="normal"
-                                    label="Sua senha" 
-                                    variant="outlined"
-                                    helperText={getError('password')}
-                                    error={hasError('password')}
-                                    fullWidth
-                                    required
-                                />  
-                            </Grid>
+                    </SmartDataPaper>
+                
+                    <SmartDataPaper>
 
-                            <Grid item lg={12}>
-                                <TextField
-                                    type="password"
-                                    value={values.confirmPassword}
-                                    name="confirmPassword"
-                                    onChange={handleChange}
-                                    margin="normal"
-                                    label="Confirme sua senha" 
-                                    variant="outlined"
-                                    helperText={getError('confirmPassword')}
-                                    error={hasError('confirmPassword')}
-                                    fullWidth
-                                    required
-                                />  
-                            </Grid>
+                        <EqualizerRoundedIcon/>
 
-                            <Grid item lg={12} className={classes.registerButton}>
-                                <Button
-                                        type="submit"
-                                        variant="contained"
-                                        color="primary"
-                                        size="medium"
-                                        disabled={ableToSubmit(errors)}
-                                    >
-                                        Cadastrar
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </form>
-                </SmartDataPaper>
-            
-                <SmartDataPaper>
-
-                     <EqualizerRoundedIcon style={{ fontSize: 75, marginBottom: 10}}/>
-
-                    <Typography variant="h4"  style={{textAlign: 'center'}}>
-                        Gerencie projetos com excelência
-                    </Typography>
-
-                    <Grid item lg={12}>
-                        <Typography className={classes.titleBack}>
-                            <Link href={LOGIN} onClick={handleRedirectLogin}>
-                                Voltar para Login
-                            </Link>
+                        <Typography variant="h4"  style={{textAlign: 'center'}}>
+                            Gerencie projetos com excelência
                         </Typography>
-                    </Grid>
-            
-                </SmartDataPaper>
 
-            </Grid>
-        </Grid>
+                        <Grid item lg={12}>
+                            <TitleBack>
+                                <Link href={LOGIN} onClick={handleRedirectLogin}>
+                                    Voltar para Login
+                                </Link>
+                            </TitleBack>
+                        </Grid>
+                
+                    </SmartDataPaper>
+
+                </Content>
+
+            </Container>
     );
 }
  

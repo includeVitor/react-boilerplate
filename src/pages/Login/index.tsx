@@ -6,16 +6,15 @@ import { authService } from "../../services"
 import { UserRequest, UserRequestError } from "../../types"
 import { FORGOT, SIGNUP } from "../../route/CONSTANTS"
 
-//Material UI
-import { Button, TextField, Grid, Typography, Link } from '@material-ui/core'
-import {TouchApp as TouchAppIcon } from '@material-ui/icons'
-
 //SmartData Components
 import SmartDataPaper from '../../components/SmartDataPaper'
 
 //StyledComponents
 import { Container, Content, GridForgot, GridRegister, GridSubmit } from './styles'
 
+//Material UI
+import { Button, TextField, Grid, Typography, Link } from '@material-ui/core'
+import {TouchApp as TouchAppIcon } from '@material-ui/icons'
 
 const LoginPage: React.FC = (props : any) => { 
     
@@ -169,6 +168,7 @@ const LoginPage: React.FC = (props : any) => {
                     </SmartDataPaper>
                     
                 </Content>
+                
             </Container>
         
     )
