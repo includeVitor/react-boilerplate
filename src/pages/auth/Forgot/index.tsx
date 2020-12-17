@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 
 //Services, Types, Constants
 import { authService } from "../../../services"
-import { ILoginRequestError } from "../../../services/authService/types"
+import { IForgotRequest, ILoginRequestError } from "../../../services/authService/types"
 import { PublicRoutes } from "../../../route/types"
 
 //StyledComponents
@@ -14,14 +14,13 @@ import SmartDataPaper from "../../../components/SmartDataPaper"
 import { Grid, TextField, Link } from "@material-ui/core"
 
 //Utils
-import { _handleRedirect, _defaultErrorMessages, _hasError, _getError } from "../../../util/pageUtils"
+import { _handleChange, _handleRedirect, _defaultErrorMessages, _hasError, _getError } from "../../../util/pageUtils"
 
 const ForgetPage: React.FC = () => {
     
     const history = useHistory()
 
-
-    const [email, setEmail] = useState()
+    const [values, setValues] = useState({email: ""} as IForgotRequest)
     const [errors, setErrors] = useState({} as ILoginRequestError)
 
     const handleSubmit = (e: any) => {
@@ -29,15 +28,18 @@ const ForgetPage: React.FC = () => {
 
         setErrors(_defaultErrorMessages(e))
 
+        // const userRegisterData : IForgotRequest ={
+        //     email: values.email
+        // }
         //forgot action
         
     }
 
-    const handleChange = (e: any) => {
-        const input = e.target
-        setEmail(input.value)
-        setErrors({...errors, [input.name] : input.validationMessage})
-    }
+    // const handleChange = (e: any) => {
+    //     const input = e.target
+    //     setValues(input.value)
+    //     setErrors({...errors, [input.name] : input.validationMessage})
+    // }
 
     return (  
         <>  
@@ -53,9 +55,9 @@ const ForgetPage: React.FC = () => {
                         <Grid item lg={12}>
                             <TextField
                                 type="email"
-                                value={email}
+                                value={values.email}
                                 name="email"
-                                onChange={handleChange}
+                                onChange={(e : any) => _handleChange(e, setValues, setErrors)}
                                 margin="normal"
                                 label="Digite seu e-mail" 
                                 variant="outlined"

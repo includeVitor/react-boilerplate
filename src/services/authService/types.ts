@@ -3,10 +3,14 @@ export interface ILoginRequest{
     password:string
 }
 
-export interface IRegisterRequest{
+export interface ISignupRequest{
     email:string,
     password:string,
     confirmPassword: string
+}
+
+export interface IForgotRequest{
+    email:string
 }
 
 export type ILoginRequestError = {

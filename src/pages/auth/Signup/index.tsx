@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 //Services, Types, Constants
 import { authService } from "../../../services"
-import { ILoginRequestError, IRegisterRequest } from "../../../services/authService/types"
+import { ILoginRequestError, ISignupRequest } from "../../../services/authService/types"
 import { PublicRoutes } from "../../../route/types"
 
 //SmartData Components
@@ -23,9 +23,10 @@ const SignupPage: React.FC = () => {
 
     const history = useHistory()
 
-    const [errors, setErrors] = useState({} as ILoginRequestError)
 
-    const [values, setValues] = useState({email: "", password: "", confirmPassword: ""} as IRegisterRequest)
+    const [values, setValues] = useState({email: "", password: "", confirmPassword: ""} as ISignupRequest)
+
+    const [errors, setErrors] = useState({} as ILoginRequestError)
 
     const handleSubmit = (e: any) => {
        e.preventDefault() 
@@ -37,7 +38,7 @@ const SignupPage: React.FC = () => {
 
        setErrors(_defaultErrorMessages(e))
 
-        const userRegisterData : IRegisterRequest ={
+        const userRegisterData : ISignupRequest ={
             email: values.email,
             password: values.password,
             confirmPassword: values.confirmPassword

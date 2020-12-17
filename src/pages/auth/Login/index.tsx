@@ -24,10 +24,7 @@ const LoginPage: React.FC = (props : any) => {
     
     const history =  useHistory()
     
-    const [values, setValues] = useState({
-        email: "",
-        password: ""
-    } as ILoginRequest)
+    const [values, setValues] = useState({email: "", password: ""} as ILoginRequest)
  
     const [errors, setErrors] = useState({} as ILoginRequestError)
 

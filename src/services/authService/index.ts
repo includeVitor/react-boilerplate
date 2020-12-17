@@ -1,5 +1,5 @@
 import api from '../apiService'
-import { ILoginRequest, IRegisterRequest, Routes } from './types'
+import { ILoginRequest, ISignupRequest, Routes } from './types'
 import { login, logout } from "../../store/modules/auth"
 import { clear_errors } from "../../store/modules/ui"
 import store from "../../store"
@@ -46,7 +46,7 @@ async function loginUser(user : ILoginRequest, history : any){
     }    
 }
 
-async function registerUser(user: IRegisterRequest, history: any){
+async function registerUser(user: ISignupRequest, history: any){
     
     try{
 
