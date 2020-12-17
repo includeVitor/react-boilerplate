@@ -10,6 +10,8 @@ export const CheckAuthentication = () => {
     if(authToken){
 
         try{
+            
+            //preciso verificar se o token está correto e tratar caso não esteja
             const decodedToken:any = jwtDecode(authToken)
 
             if(decodedToken.exp * 1000 < Date.now()){
@@ -18,6 +20,7 @@ export const CheckAuthentication = () => {
                 store.dispatch(login())
                 api.defaults.headers.common["Authorization"] = authToken
             }
+
         }catch{
             localStorage.removeItem('token')
             store.dispatch(logout())

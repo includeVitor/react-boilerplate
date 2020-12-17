@@ -5,12 +5,16 @@ import { clear_errors } from "../../store/modules/ui"
 import store from "../../store"
 import { PrivateRoutes }  from "../../route/types"
 import { _setErrors } from '../../util/serviceUtils'
+import { error as ToastError } from "../../store/modules/notify"
+import { Toast } from "../../store/modules/notify/types"
 
 export const authService = {
     loginUser,
     registerUser,
     logoutUser
 }
+
+const defaultErrorMessage : Toast =  { message : "Não foi possível comunicar com o servidor" }
 
 const setToken = (token : string) => {
     localStorage.setItem('token', token)
@@ -41,8 +45,14 @@ async function loginUser(user : ILoginRequest, history : any){
     }catch(error){
         
         const { response }  = error
+        
+        if(response)
+            _setErrors(response.status, response.data.errors)
+        //Network Error
+        else
+            store.dispatch(ToastError(defaultErrorMessage))
+        
 
-        _setErrors(response.status, response.data.errors); 
     }    
 }
 
@@ -62,7 +72,12 @@ async function registerUser(user: ISignupRequest, history: any){
         
         const { response } = error
 
-        _setErrors(response.status, response.data.errors); 
+        if(response)
+            _setErrors(response.status, response.data.errors)
+        //Network Error
+        else
+            store.dispatch(ToastError(defaultErrorMessage))
+        
     }
 
 }

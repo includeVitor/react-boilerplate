@@ -2,8 +2,7 @@ import { IError, IErrors } from '../../store/modules/ui/types'
 import store from "../../store"
 import { set_errors } from "../../store/modules/ui"
 
-
-const defaultMessage : IError[] =  [{ description : "Não foi possível concluír a operação" }]
+const defaultErrorMessage : IError[] =  [{ description : "Não foi possível concluír a operação" }]
 
 const _setErrors = (code : number, errors : any) => {
 
@@ -13,7 +12,7 @@ const _setErrors = (code : number, errors : any) => {
 
     const listErros : IErrors = ({
         code :  code,
-        errors : (items.length) ? items : defaultMessage
+        errors : (items.length) ? items : defaultErrorMessage
     })
 
     store.dispatch(set_errors(listErros))
