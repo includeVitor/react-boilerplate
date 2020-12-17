@@ -47,27 +47,7 @@ async function loginUser(user : ILoginRequest, history : any){
 
             const { response }  = error
 
-            _setErrors(response.status, response.data.errors);
-
-
-
-            // auto notify user
-            // const toast : Toast = {
-            //     message: "sd"
-            // }
-            
-            // console.log(toast)
-            // store.dispatch(ToastError(toast))
-
-
-
-            // const messages =  store.getState().ui.errors?.errors?.map((e)=> ` - ${e.description}` ).join()
-            
-            // if(messages !== undefined){
-                
-              
-            // }
-            
+            _setErrors(response.status, response.data.errors); 
         }     
     }    
 }

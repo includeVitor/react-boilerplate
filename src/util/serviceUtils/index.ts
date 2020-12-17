@@ -2,7 +2,7 @@ import { IError, IErrors } from '../../store/modules/ui/types'
 import store from "../../store"
 import { set_errors } from "../../store/modules/ui"
 
-const _setErrors = (code : any, errors : any) => {
+const _setErrors = (code : number, errors : any) => {
 
     const items: IError[] = []
     
@@ -13,8 +13,7 @@ const _setErrors = (code : any, errors : any) => {
         errors : items
     })
 
-    store.dispatch(set_errors(errors))
-    
+    store.dispatch(set_errors(listErros))
 }
 
 export {
