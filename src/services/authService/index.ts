@@ -14,30 +14,37 @@ export const authService = {
     logoutUser
 }
 
+
+const setToken = (token : string) => {
+    localStorage.setItem('token', token)
+    api.defaults.headers.common['Authorization'] = token
+}
+
 async function loginUser(user : ILoginRequest, history : any){
 
     try{
 
-        let result = await api.post(Routes.Login ,{email : user.email, password : user.password})
-        if(result.data.success){
+        const { data : result } = await api.post(Routes.Login, user)
 
-            //auth 
-            const token = `Bearer ${result.data.data.accessToken}`
-            localStorage.setItem('token', token)
-            api.defaults.headers.common['Authorization'] = token
+        if(result.success){
+
+            setToken(`Bearer ${result.data.accessToken}`)
             
-            //dispatch
             store.dispatch(login())
+
             store.dispatch(clear_errors())
 
-            //route
-            history.push( PrivateRoutes.App )
-            
+            history.push(PrivateRoutes.App)
         }
 
     }catch(error){
 
-        if(error.response !== undefined){
+
+        var toast : Toast = {
+            message: "Não foi possível acessar o sistema, tente novamente mais tarde"
+        }
+
+        if(error.response){
             let data : any = error.response.data
             var items: IError[] = []
             
@@ -52,20 +59,13 @@ async function loginUser(user : ILoginRequest, history : any){
 
             store.dispatch(set_errors(errors))
 
-            const toast : Toast = {
+            toast = {
                 message: errors.errors.map((e)=> ` - ${e.description}` ).join()
             }
 
             store.dispatch(ToastError(toast))
             
-        }else{
-
-            const toast : Toast = {
-                message: "Não foi possível acessar o sistema, tente novamente mais tarde"
-            }
-
-            store.dispatch(ToastError(toast))
-        }      
+        }     
     }    
 }
 
