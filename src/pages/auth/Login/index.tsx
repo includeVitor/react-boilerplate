@@ -17,7 +17,7 @@ import { Button, TextField, Grid, Typography, Link } from '@material-ui/core'
 import {TouchApp as TouchAppIcon } from '@material-ui/icons'
 
 //Utils
-import { _handleRedirect, _defaultErrorMessages, _hasError, _getError } from "../../../util/pageUtils"
+import { _handleRedirect, _defaultErrorMessages, _hasError, _getError, _handleChange } from "../../../util/pageUtils"
 
 
 const LoginPage: React.FC = (props : any) => { 
@@ -37,15 +37,6 @@ const LoginPage: React.FC = (props : any) => {
             return !(errors.email === "" && errors.password === "" && values.email !== "" && values.password !== "")
         else
             return true
-    }
-
-    const handleChange = (e : any) => {
-        const input = e.target
-        setValues(values => ({
-            ...values,
-            [input.name]: input.value
-        }));
-        setErrors({ ...errors, [input.name]: input.validationMessage})
     }
 
     const handleSubmit = (e : any) => {
@@ -85,7 +76,7 @@ const LoginPage: React.FC = (props : any) => {
                                 type="email"
                                 value={values.email}
                                 name="email"
-                                onChange={handleChange}
+                                onChange={(e : any) => _handleChange(e, setValues, setErrors)}
                                 margin="normal"
                                 label="E-mail" 
                                 variant="outlined"
@@ -103,7 +94,7 @@ const LoginPage: React.FC = (props : any) => {
                                 type="password"
                                 value={values.password}
                                 name="password"
-                                onChange={handleChange}
+                                onChange={(e : any) => _handleChange(e, setValues, setErrors)}
                                 label="Senha" 
                                 variant="outlined"
                                 helperText={_getError('password', errors)}

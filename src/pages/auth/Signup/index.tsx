@@ -16,7 +16,7 @@ import { EqualizerRoundedIcon, SignupTitle, GridRegister, TitleBack } from './st
 import { Grid, Typography, TextField, Button, Link } from "@material-ui/core";
 
 //Utils
-import { _handleRedirect, _defaultErrorMessages, _getError, _hasError } from "../../../util/pageUtils"
+import { _handleRedirect, _defaultErrorMessages, _getError, _hasError, _handleChange } from "../../../util/pageUtils"
 
 const SignupPage: React.FC = () => {
 
@@ -47,15 +47,6 @@ const SignupPage: React.FC = () => {
         authService.registerUser(userRegisterData, history)
     }
 
-    const handleChange = (e: any) => {
-        const input = e.target
-        setValues(values => ({
-            ...values,
-            [input.name]: input.value
-        }));
-        setErrors({ ...errors, [input.name]: input.validationMessage})
-    }
-
     function ableToSubmit (value : any) {
 
         if('email' in errors || 'password' in errors || 'confirmPassword')
@@ -83,7 +74,7 @@ const SignupPage: React.FC = () => {
                                 type="email"
                                 value={values.email}
                                 name="email"
-                                onChange={handleChange}
+                                onChange={(e : any) => _handleChange(e, setValues, setErrors)}
                                 margin="normal"
                                 label="E-mail" 
                                 variant="outlined"
@@ -101,7 +92,7 @@ const SignupPage: React.FC = () => {
                                 type="password"
                                 value={values.password}
                                 name="password"
-                                onChange={handleChange}
+                                onChange={(e : any) => _handleChange(e, setValues, setErrors)}
                                 margin="normal"
                                 label="Sua senha" 
                                 variant="outlined"
@@ -117,7 +108,7 @@ const SignupPage: React.FC = () => {
                                 type="password"
                                 value={values.confirmPassword}
                                 name="confirmPassword"
-                                onChange={handleChange}
+                                onChange={(e : any) => _handleChange(e, setValues, setErrors)}
                                 margin="normal"
                                 label="Confirme sua senha" 
                                 variant="outlined"

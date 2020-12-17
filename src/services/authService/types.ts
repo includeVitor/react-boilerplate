@@ -12,3 +12,8 @@ export interface IRegisterRequest{
 export type ILoginRequestError = {
     [index: string] :string
 }
+
+export enum Routes{
+    Login = "/entrar",
+    Register = "nova-conta"
+}

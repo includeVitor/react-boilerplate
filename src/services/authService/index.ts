@@ -1,5 +1,5 @@
 import api from '../apiService'
-import { ILoginRequest, IRegisterRequest } from './types'
+import { ILoginRequest, IRegisterRequest, Routes } from './types'
 import { login, logout } from "../../store/modules/auth"
 import { clear_errors, set_errors } from "../../store/modules/ui"
 import { error as ToastError } from "../../store/modules/notify"
@@ -18,7 +18,7 @@ async function loginUser(user : ILoginRequest, history : any){
 
     try{
 
-        let result = await api.post(`/entrar`,{email : user.email, password : user.password})
+        let result = await api.post(Routes.Login ,{email : user.email, password : user.password})
         if(result.data.success){
 
             //auth 
@@ -73,7 +73,7 @@ async function registerUser(user: IRegisterRequest, history: any){
     
     try{
 
-        let result = await api.post('/register', {email: user.email, password: user.password, confirmPassword: user.confirmPassword})
+        let result = await api.post(Routes.Register, {email: user.email, password: user.password, confirmPassword: user.confirmPassword})
 
         if(result.data.success){
 
@@ -95,7 +95,7 @@ async function registerUser(user: IRegisterRequest, history: any){
     }catch(error){
         
         if(error.response !== undefined){
-
+            
             let data : any = error.response.data
             var items: IError[] = []
             
