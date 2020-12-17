@@ -3,8 +3,6 @@ import { login, logout } from "../store/modules/auth"
 import api from "../services/apiService"
 import store from "../store"
 
-
-
 export const CheckAuthentication = () => {
 
     const authToken = localStorage.token

@@ -1,6 +1,7 @@
 import React from "react"
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 import { Redirect, Route } from "react-router-dom"
+import { RootState } from "../../store"
 
 //Constants, Types
 import { AppRouteProps } from "../../types"
@@ -9,8 +10,10 @@ import { PublicRoutes } from '../types'
 //Layout
 import Layout from "../../pages/_layouts/app"
  
-const PrivateRoute: React.FC<AppRouteProps> = ({component: Component, authenticated, ...rest}) => {
+const PrivateRoute: React.FC<AppRouteProps> = ({component: Component, ...rest}) => {
     
+    const authenticated = useSelector( (state : RootState)  => (state.auth.isAuthenticated))
+
     return (  
         <Route
             {...rest}
@@ -18,9 +21,5 @@ const PrivateRoute: React.FC<AppRouteProps> = ({component: Component, authentica
         />
     )
 }
-
-const mapStateToProps = (state:any) => ({
-    authenticated: state.auth.isAuthenticated
-})
  
-export default connect(mapStateToProps) (PrivateRoute)
+export default PrivateRoute
