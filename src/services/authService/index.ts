@@ -7,6 +7,8 @@ import store from "../../store"
 import { PrivateRoutes }  from "../../route/types"
 import { IError, IErrors } from '../../store/modules/ui/types'
 import { Toast } from '../../store/modules/notify/types'
+import { _setErrors } from '../../util/serviceUtils'
+
 
 export const authService = {
     loginUser,
@@ -26,6 +28,7 @@ async function loginUser(user : ILoginRequest, history : any){
 
         const { data : result } = await api.post(Routes.Login, user)
 
+        //Login Successful
         if(result.success){
 
             setToken(`Bearer ${result.data.accessToken}`)
@@ -36,34 +39,34 @@ async function loginUser(user : ILoginRequest, history : any){
 
             history.push(PrivateRoutes.App)
         }
-
+    
+    //Login Failed
     }catch(error){
 
-
-        var toast : Toast = {
-            message: "Não foi possível acessar o sistema, tente novamente mais tarde"
-        }
-
         if(error.response){
-            let data : any = error.response.data
-            var items: IError[] = []
+
+            const { response }  = error
+
+            _setErrors(response.status, response.data.errors);
+
+
+
+            // auto notify user
+            // const toast : Toast = {
+            //     message: "sd"
+            // }
             
-            data.errors.forEach((e: string) => {                
-                items.push({description: e})
-            });
+            // console.log(toast)
+            // store.dispatch(ToastError(toast))
 
-            const errors : IErrors = ({
-                code :  error.response.status,
-                errors : items
-            })
 
-            store.dispatch(set_errors(errors))
 
-            toast = {
-                message: errors.errors.map((e)=> ` - ${e.description}` ).join()
-            }
-
-            store.dispatch(ToastError(toast))
+            // const messages =  store.getState().ui.errors?.errors?.map((e)=> ` - ${e.description}` ).join()
+            
+            // if(messages !== undefined){
+                
+              
+            // }
             
         }     
     }    

@@ -1,12 +1,7 @@
 import { Action } from "redux"
-import { IErrors } from "./types"
+import { IErrors, IUiState } from "./types"
 
 //Actions
-
-interface UiState{
-    loading: boolean,
-    errors: IErrors | null
-}
 
 const SET_ERRORS = 'ui/set_errors'
 const CLEAR_ERRORS = 'ui/clear_errors'
@@ -14,19 +9,16 @@ const LOADING_UI = 'ui/loading_ui'
 
 
 interface SetErrorsAction extends Action<typeof SET_ERRORS> {
-    payload: {
-      errors: IErrors
-    }
+    payload: IErrors
 }
   
 type ClearErrorsAction = Action<typeof CLEAR_ERRORS>
 type LoadingUIAction = Action<typeof LOADING_UI>
 
 
-
 export const set_errors = (errors : IErrors) : SetErrorsAction => ({
     type: SET_ERRORS,
-    payload : { errors: errors }
+    payload : errors
 })
 
 export const clear_errors = () : ClearErrorsAction => ({
@@ -37,7 +29,7 @@ export const loading_ui = () : LoadingUIAction => ({
     type: LOADING_UI
 })
 
-const initialState : UiState = {
+const initialState : IUiState = {
     loading: true,
     errors: null
 }
@@ -45,7 +37,7 @@ const initialState : UiState = {
 //Reduces
 
 const uiReducer = (
-    state: UiState = initialState,
+    state: IUiState = initialState,
     action: SetErrorsAction | ClearErrorsAction | LoadingUIAction
 ) => {
     
