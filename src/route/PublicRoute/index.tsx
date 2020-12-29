@@ -4,8 +4,7 @@ import { Redirect, Route } from "react-router-dom"
 import { RootState } from "../../store"
 
 //Constants, Types
-import { AppRouteProps } from "../../types"
-import { PrivateRoutes }  from "../types"
+import { PrivateRoutes, AppRouteProps }  from "../types"
 
 //Layout
 import Layout from "../../pages/_layouts/auth"

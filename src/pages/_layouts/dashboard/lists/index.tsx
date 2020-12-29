@@ -1,3 +1,5 @@
 import { mainList } from './mainList'
 
-export { mainList }
+export const lists = {
+    mainList
+}

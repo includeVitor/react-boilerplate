@@ -1,14 +1,9 @@
 import { Action } from "redux"
 import { toast } from "react-toastify";
-import { Toast } from "./types"
+import { IToastState, Toast } from "./types"
 
 
 //Actions 
-
-interface ToastState{ 
-    time?: number,
-    message: string
-}
 
 const INFO = 'toast/info'
 const SUCCESS = 'toast/success'
@@ -48,7 +43,7 @@ export const error = (toast: Toast): ErrorAction => ({
     payload: toast
 })
 
-const initialState: ToastState = {
+const initialState: IToastState = {
     time : 5000,
     message: ""
 }
@@ -57,7 +52,7 @@ const initialState: ToastState = {
 //Reduces
 
 const toastReducer = (
-    state: ToastState = initialState,
+    state: IToastState = initialState,
     action: InfoAction | SuccessAction | WarningAction | ErrorAction
 ) => {
     switch(action.type){
@@ -70,18 +65,21 @@ const toastReducer = (
             }
 
         case SUCCESS:
+
             toast.success(action.payload.message, {autoClose: action.payload.time})
             return{
                 ...state
             }
 
         case WARNING:
+
             toast.warning(action.payload.message, {autoClose: action.payload.time})
             return{
                 ...state
             }
 
         case ERROR:
+            
             toast.error(action.payload.message, {autoClose: action.payload.time})
             return{
                 ...state

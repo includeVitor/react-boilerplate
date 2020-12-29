@@ -35,7 +35,7 @@ const authReducer = (
     case LOGIN:
       return { 
         ...state, 
-        isAuthenticated: true 
+        isAuthenticated: true
       }
 
     case LOGOUT:

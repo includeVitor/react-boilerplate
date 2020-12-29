@@ -1,14 +1,17 @@
 import jwtDecode from "jwt-decode"
 import { login, logout } from "../store/modules/auth"
+import { light, dark } from '../store/modules/theme'
 import api from "../services/apiService"
 import store from "../store"
+import { IThemeType } from '../store/modules/theme/types'
 
-export const CheckAuthentication = () => {
+
+export const CheckAuthWithTheme = () => {
 
     const authToken = localStorage.token
+    const currentTheme = localStorage.theme
     
     if(authToken){
-
         try{
             
             //preciso verificar se o token está correto e tratar caso não esteja
@@ -24,6 +27,19 @@ export const CheckAuthentication = () => {
         }catch{
             localStorage.removeItem('token')
             store.dispatch(logout())
+        }
+    }
+
+    if(currentTheme){
+        try{
+
+            if(currentTheme === IThemeType.light)
+                store.dispatch(light())
+            else
+                store.dispatch(dark())
+
+        }catch{
+            store.dispatch(light())
         }
     }
 

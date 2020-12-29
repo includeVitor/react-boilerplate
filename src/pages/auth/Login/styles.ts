@@ -1,27 +1,37 @@
 import styled from 'styled-components'
-import Grid from '@material-ui/core/Grid'
+import { TextField, Button, Avatar, Typography } from '@material-ui/core'
 
-export const GridForgot = styled(Grid)`
+export const TextFieldSmart = styled(TextField)`
 
-    padding-top:15px;
-    justify-content: flex-start;
-    display: flex;
+    margin-top:15px;
 
 `
 
-export const GridRegister = styled(Grid)`
+export const FormSmart = styled.form`
 
-    padding-top: 40px;
-    justify-content: flex-start;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 120px;
 
 `
 
-export const GridSubmit = styled(Grid)`
+export const ButtonSmart = styled(Button)`
 
-    padding-top: 40px;
-    justify-content: flex-end;
-    display: flex;
+    margin-top:15px;
+
+`
+
+export const AvatarSmart = styled(Avatar)`
+
+    background-color: #3f51b5;
+    margin-bottom: 15px;
+
+`
+
+export const TypographySmart = styled(Typography)`
+
+    margin-bottom: 15px;
 
 `
 

@@ -4,11 +4,10 @@ import { Redirect, Route } from "react-router-dom"
 import { RootState } from "../../store"
 
 //Constants, Types
-import { AppRouteProps } from "../../types"
-import { PublicRoutes } from '../types'
+import { PublicRoutes, AppRouteProps } from '../types'
 
 //Layout
-import Layout from "../../pages/_layouts/app"
+import Layout from "../../pages/_layouts/dashboard"
  
 const PrivateRoute: React.FC<AppRouteProps> = ({component: Component, ...rest}) => {
     
@@ -17,7 +16,7 @@ const PrivateRoute: React.FC<AppRouteProps> = ({component: Component, ...rest}) 
     return (  
         <Route
             {...rest}
-            render={ (props) => authenticated ? <Layout><Component {...props} /></Layout> : <Redirect to={PublicRoutes.Login} />}
+            render={ (props) => authenticated ? <Layout><Component {...props} /></Layout>: <Redirect to={PublicRoutes.Login} />}
         />
     )
 }

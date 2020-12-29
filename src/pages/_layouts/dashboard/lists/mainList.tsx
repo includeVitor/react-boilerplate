@@ -1,5 +1,5 @@
 import React from "react"
-import WorkIcon from '@material-ui/icons/Work'
+import { Settings as SettingsIcon } from '@material-ui/icons'
 import { ListItemIcon, ListItem, ListItemText } from '@material-ui/core'
 
 export const mainList = (
@@ -7,9 +7,9 @@ export const mainList = (
     <div>
         <ListItem button>
             <ListItemIcon>
-                <WorkIcon/>
+                <SettingsIcon/>
             </ListItemIcon>
-            <ListItemText primary="Projects" />
+            <ListItemText primary="Admin" />
         </ListItem>
     </div>
 

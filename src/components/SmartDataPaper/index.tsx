@@ -1,15 +1,15 @@
 import React from 'react'
-import { Paper, ISmartDataCardProps } from './styles'
+import { PaperSmart, ISmartDataPaper } from './styles'
 
-const SmartDataPaper: React.FC<ISmartDataCardProps> = ({children, maxWidth, border, background, padding}) => {
+ 
+const SmartDataPaper: React.FC<ISmartDataPaper> = ({ children, height }) => {
+    return (  
 
-    return(
-    
-        <Paper maxWidth={maxWidth} border={border} background={background} padding={padding}>
-            {children}
-        </Paper>
+        <PaperSmart height={height}>
+            { children }
+        </PaperSmart>
+
     )
 }
-
-
+ 
 export default SmartDataPaper

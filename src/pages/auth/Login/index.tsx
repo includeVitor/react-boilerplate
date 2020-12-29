@@ -4,23 +4,19 @@ import { useHistory } from "react-router-dom"
 //Services, Types, Constants
 import { authService } from "../../../services"
 import { ILoginRequest, ILoginRequestError } from "../../../services/authService/types"
-import { PublicRoutes } from "../../../route/types"
 
-//SmartData Components
-import SmartDataPaper from '../../../components/SmartDataPaper'
 
 //StyledComponents
-import { GridForgot, GridRegister, GridSubmit } from './styles'
+import { TextFieldSmart, ButtonSmart, FormSmart, AvatarSmart, TypographySmart } from './styles'
 
 //Material UI
-import { Button, TextField, Grid, Typography, Link } from '@material-ui/core'
-import {TouchApp as TouchAppIcon } from '@material-ui/icons'
+import {LockOutlined as LockOutlinedIcon } from '@material-ui/icons'
 
 //Utils
-import { _handleRedirect, _defaultErrorMessages, _hasError, _getError, _handleChange } from "../../../util/pageUtils"
+import { _defaultErrorMessages, _hasError, _getError, _handleChange } from "../../../util/pageUtils"
 
 
-const LoginPage: React.FC = (props : any) => { 
+const LoginPage: React.FC = () => { 
     
     const history =  useHistory()
     
@@ -52,88 +48,58 @@ const LoginPage: React.FC = (props : any) => {
         
     return (           
         <>           
-            <SmartDataPaper>
+            <FormSmart noValidate onSubmit={handleSubmit}> 
 
-                <TouchAppIcon style={{ fontSize: 75, marginBottom: 10 }}/>
+                <AvatarSmart>
+                    <LockOutlinedIcon  />
+                </AvatarSmart>
 
-                <Typography variant="h4">
-                    Entre na plataforma
-                </Typography>
-        
-            </SmartDataPaper>
+                <TypographySmart  variant="h5">
+                    Smart Data
+                </TypographySmart>
 
-            <SmartDataPaper padding={68} border={true} background={true} >
+                <TextFieldSmart
+                    type="email"
+                    value={values.email}
+                    name="email"
+                    onChange={(e : any) => _handleChange(e, setValues, setErrors)}
+                    margin="normal"
+                    label="E-mail" 
+                    variant="outlined"
+                    autoComplete="email"
+                    helperText={_getError('email', errors)}
+                    error={_hasError('email', errors)}
+                    autoFocus
+                    fullWidth
+                    required
+                />  
+                    
 
-                <form  noValidate onSubmit={handleSubmit}> 
+                <TextFieldSmart
+                    type="password"
+                    value={values.password}
+                    name="password"
+                    onChange={(e : any) => _handleChange(e, setValues, setErrors)}
+                    label="Senha" 
+                    variant="outlined"
+                    helperText={_getError('password', errors)}
+                    error={_hasError('password', errors)}
+                    required
+                    fullWidth
+                />  
 
-                    <Grid container>
-                        
-                        <Grid item lg={12}>
-                            <TextField
-                                type="email"
-                                value={values.email}
-                                name="email"
-                                onChange={(e : any) => _handleChange(e, setValues, setErrors)}
-                                margin="normal"
-                                label="E-mail" 
-                                variant="outlined"
-                                autoComplete="email"
-                                helperText={_getError('email', errors)}
-                                error={_hasError('email', errors)}
-                                autoFocus
-                                fullWidth
-                                required
-                            />  
-                        </Grid>
-                        
-                        <Grid item lg={12}>
-                            <TextField
-                                type="password"
-                                value={values.password}
-                                name="password"
-                                onChange={(e : any) => _handleChange(e, setValues, setErrors)}
-                                label="Senha" 
-                                variant="outlined"
-                                helperText={_getError('password', errors)}
-                                error={_hasError('password', errors)}
-                                required
-                                fullWidth
-                            />  
-                        </Grid>
+                <ButtonSmart
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    size="medium"
+                    disabled={ableToSubmit(errors)}
+                    fullWidth
+                >
+                    Entrar
+                </ButtonSmart>
 
-                        <GridForgot item lg={12}>
-                            <Typography>
-                                <Link href={PublicRoutes.Forgot} onClick={(e : any) => _handleRedirect(e, PublicRoutes.Forgot, history)}>
-                                    Esqueci minha senha
-                                </Link>
-                            </Typography>
-                        </GridForgot>
-
-                        <GridRegister item lg={6}>
-                            <Typography>
-                                <Link href={PublicRoutes.Signup} onClick={(e : any) => _handleRedirect(e,PublicRoutes.Signup, history)}>
-                                    Registrar
-                                </Link>
-                            </Typography>
-                        </GridRegister>
-
-                        <GridSubmit item lg={6} >
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                color="primary"
-                                size="medium"
-                                disabled={ableToSubmit(errors)}
-                            >
-                                Entrar
-                            </Button>
-                        </GridSubmit>
-
-                    </Grid>
-
-                </form>
-                
-            </SmartDataPaper>
+            </FormSmart>
         </>       
     )
 
