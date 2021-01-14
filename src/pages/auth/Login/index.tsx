@@ -55,7 +55,7 @@ const LoginPage: React.FC = () => {
                 </AvatarSmart>
 
                 <TypographySmart  variant="h5">
-                    Smart Data
+                    React App
                 </TypographySmart>
 
                 <TextFieldSmart

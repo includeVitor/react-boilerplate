@@ -6,7 +6,7 @@ import { RootState } from '../../store'
 import { useSelector } from 'react-redux'
 import { IThemeType } from '../../store/modules/theme/types'
 
-const SmartDataTheme: React.FC = () => {
+const ComponentTheme: React.FC = () => {
 
     const AppTheme  = useSelector((state : RootState) => (state.theme.type))
 
@@ -19,4 +19,4 @@ const SmartDataTheme: React.FC = () => {
     )
 }
 
-export default SmartDataTheme
+export default ComponentTheme

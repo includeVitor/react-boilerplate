@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-import SmartDataTheme from '../../../components/SmartDataTheme'
+import ComponentTheme from '../../../components/ComponentTheme'
 
 //Styled Components
 import { ToolbarSmart, WrapperSmart, ToolbarIconSmart, TypographySmart, ContentSmart, AppSpaceBarSmart } from './styles'
@@ -127,7 +127,7 @@ const SmartDataAppBar: React.FC = ({ children }) => {
                             edge="end"
                             color="inherit"
                         >
-                            <SmartDataTheme/>
+                            <ComponentTheme/>
                         </IconButton>
 
                         <IconButton

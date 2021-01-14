@@ -1,13 +1,13 @@
 import React from "react"
 import { Container } from '@material-ui/core'
 
-//SmartData Components
-import SmartDataTheme from '../../../components/SmartDataTheme'
+//Components
+import ComponentTheme from '../../../components/ComponentTheme'
 
 const AuthLayout: React.FC = ({ children }) => {
     return ( 
         <>
-            <SmartDataTheme/>
+            <ComponentTheme/>
             <Container component="main" maxWidth="xs">
                 <>
                     { children }

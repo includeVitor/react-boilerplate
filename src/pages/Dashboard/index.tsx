@@ -1,5 +1,5 @@
 import React from "react"
-import SmartDataPaper from '../../components/SmartDataPaper'
+import ComponentPaper from '../../components/ComponentPaper'
 import { Grid, Typography} from "@material-ui/core"
 
 
@@ -9,11 +9,11 @@ const DashboardPage: React.FC = (props: any) => {
 
         <Grid item xs={12} md={8} lg={12}>
             
-            <SmartDataPaper>
+            <ComponentPaper>
                 <Typography variant="h2">
                     Welcome to Smart Data
                 </Typography>
-            </SmartDataPaper>
+            </ComponentPaper>
 
         </Grid>
         
