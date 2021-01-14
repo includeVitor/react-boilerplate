@@ -20,7 +20,7 @@ import clsx from 'clsx'
 import { lists } from './lists'
 
 
-const SmartDataAppBar: React.FC = ({ children }) => {
+const ComponentAppBar: React.FC = ({ children }) => {
 
     const drawerWidth = 240;
     const menuId = 'primary-search-account-menu';
@@ -188,4 +188,4 @@ const SmartDataAppBar: React.FC = ({ children }) => {
     )
 }
 
-export default SmartDataAppBar
+export default ComponentAppBar

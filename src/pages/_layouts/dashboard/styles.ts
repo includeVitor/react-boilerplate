@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Toolbar, Typography } from '@material-ui/core'
 import { withTheme } from "@material-ui/core/styles"
 
-export interface ISmartDataAppBarProps{
+export interface IAppBarProps{
     open: boolean
 }
 
